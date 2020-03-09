@@ -25,6 +25,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set noshiftround
+set autoindent
 
 " Status bar
 set laststatus=2
@@ -39,3 +40,5 @@ set showmatch
 " Color scheme (terminal)
 colorscheme desert
 
+" Plugins
+filetype plugin indent on
