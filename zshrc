@@ -101,9 +101,10 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR=vim
 alias sl='ls'
 alias sai='sudo apt install'
+alias agrep="alias | grep -i"
 
 # vim key bindings
 # Use ESC to enter it and 'a' or 'i' to go back to insert mode
 bindkey -v
 # But keep ctrl-r for reverese search
-bindkey -e '^r' history-incremental-search-backward
+bindkey '^r' history-incremental-search-backward
