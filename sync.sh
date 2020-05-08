@@ -2,7 +2,7 @@
 set -x
 
 rsync -vha ~/.vim/ vim/
-cp ~/.vimrc ./vim
-cp ~/.tmux.conf ./tmux.conf
-cp ~/.zshrc ./zshrc
+cp -u ~/.vimrc ./vim
+cp -u ~/.tmux.conf ./tmux.conf
+cp -u ~/.zshrc ./zshrc
 
