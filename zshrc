@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/ajc/.oh-my-zsh"
@@ -69,7 +69,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #
-plugins=(git zsh-syntax-highlighting)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,7 +103,9 @@ export EDITOR=vim
 alias sl='ls'
 alias sai='sudo apt install'
 alias agrep="alias | grep -i"
+alias open="xdg-open"
 
+alias tf="terraform"
 # vim key bindings
 # Use ESC to enter it and 'a' or 'i' to go back to insert mode
 bindkey -v
@@ -120,3 +122,6 @@ if [[ $TMUX == "" ]]
 then 
   tmux attach || tmux new
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/ajc/.local/bin/terraform terraform
