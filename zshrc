@@ -104,6 +104,7 @@ alias sl='ls'
 alias sai='sudo apt install'
 alias agrep="alias | grep -i"
 alias open="xdg-open"
+alias chx="chmod +x"
 
 alias tf="terraform"
 # vim key bindings
