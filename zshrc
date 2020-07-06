@@ -2,7 +2,7 @@
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ajc/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -125,4 +125,4 @@ then
 fi
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/ajc/.local/bin/terraform terraform
+complete -o nospace -C /home/$USER/.local/bin/terraform terraform
