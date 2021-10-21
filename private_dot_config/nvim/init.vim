@@ -235,8 +235,10 @@ augroup END
 
 autocmd TermOpen * setlocal nonumber norelativenumber
 autocmd CmdwinEnter [:] startinsert
-au! BufWritePost $MYVIMRC source %  " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
-autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"  " Run chezmoi apply whenever you save a dotfile
+" auto source when writing to init.vm alternatively you can run :source $MYVIMRC
+au! BufWritePost $MYVIMRC source %
+" Run chezmoi apply whenever you save a dotfile
+au! BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply
 
 " Custom color stuff
 highlight Pmenu guibg=bg ctermbg=bg
