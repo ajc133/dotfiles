@@ -7,7 +7,8 @@ sudo apt install nmap \
     curl \
     zsh \
     silversearcher-ag \
-    keychain
+    keychain \
+    iperf
 
 # Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
 
