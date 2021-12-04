@@ -12,7 +12,9 @@ sudo apt install curl \
     zsh \
 
 # Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
-
+if [ ! -f "/usr/bin/nvim" ]; then
+	sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -O /usr/bin/nvim && sudo chmod +x /usr/bin/nvim
+fi
 
 vimplug_path="${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim 
 # vimplug
