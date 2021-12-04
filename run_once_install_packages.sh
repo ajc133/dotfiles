@@ -43,3 +43,11 @@ if [ -f "$HOME/.fzf" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
     $HOME/.fzf/install
 fi
+
+# tmux
+if [ ! -d "$HOME/.tmux" ]; then
+	git clone https://github.com/gpakosz/.tmux.git $HOME/.tmux
+	ln -sf $HOME/.tmux/.tmux.conf ~/.tmux.conf
+	cp $(chezmoi source-path)/dot_tmux.conf.local ~/.tmux.conf.local
+fi
+
