@@ -23,9 +23,9 @@ if [ ! -f "$vimplug_path" ]; then
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-# install oh-my-zsh
-if [ ! -f "${HOME}/.oh-my-zsh/oh-my-zsh.sh" ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+# clone oh-my-zsh
+if [ ! -f "${HOME}/.oh-my-zsh" ]; then
+    git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 fi
 
 # zsh autosuggestions syntax-highlighting
