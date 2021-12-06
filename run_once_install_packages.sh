@@ -39,9 +39,9 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; 
 fi
 
 # fzf
-if [ -f "$HOME/.fzf" ]; then
+if [ ! -f "$HOME/.fzf" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
-    $HOME/.fzf/install
+    $HOME/.fzf/install --all
 fi
 
 # tmux
