@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo apt update -y
-sudo apt install -y curl \
+sudo apt-get update -y
+sudo apt-get install -y curl \
     git \
     iperf \
     jq \
