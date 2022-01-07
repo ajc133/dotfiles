@@ -1,12 +1,16 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:/usr/local/go/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/bin:/usr/local/go/bin:$PATH
 export GOPATH=$HOME/workspace
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR="nvim"
 export ZSH_TMUX_AUTOSTART="false"
 export ZSH_TMUX_UNICODE="true"
+{{- if (eq .chezmoi.arch "amd64") }}
+export EDITOR="nvim"
+{{ else }}
+export EDITOR="vim"
+{{ end -}}
 
 export AWS_SKD_LOAD_CONFIG=1
 
@@ -65,7 +69,11 @@ alias sai="sudo apt install"
 alias sau="sudo apt update"
 alias sl="ls"
 alias tf="terraform"
-alias vim="nvim"
+{{- if (eq .chezmoi.arch "amd64") }}
+export EDITOR="nvim"
+{{ else }}
+export EDITOR="vim"
+{{ end }}
 
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
