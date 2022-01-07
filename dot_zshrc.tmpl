@@ -70,9 +70,7 @@ alias sau="sudo apt update"
 alias sl="ls"
 alias tf="terraform"
 {{- if (eq .chezmoi.arch "amd64") }}
-export EDITOR="nvim"
-{{ else }}
-export EDITOR="vim"
+alias vim="nvim"
 {{ end }}
 
 autoload bashcompinit && bashcompinit
