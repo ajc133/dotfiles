@@ -1,0 +1,6 @@
+{{- $git_email := promptStringOnce . "git_email" "GitHub Email address" -}}
+{{- $zsh_theme := promptStringOnce . "zsh_theme" "ZSH theme" -}}
+
+[data]
+  git_email = {{ $git_email | quote }}
+  zsh_theme = {{ $zsh_theme | quote }}
