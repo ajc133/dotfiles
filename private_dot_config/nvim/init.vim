@@ -137,88 +137,84 @@ vnoremap > >gv
 
 " -------------------- LSP ---------------------------------
 :lua << EOF
-  local nvim_lsp = require('lspconfig')
 
-  local on_attach = function(client, bufnr)
-    require('completion').on_attach()
-
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Generic Mappings
     local opts = { noremap=true, silent=true }
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<Leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<Leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<Leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
-    -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    elseif client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    local on_attach = function(client, bufnr)
+      vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+      local bufopts = { noremap=true, silent=true, buffer=bufnr }
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+      vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+      vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+      vim.keymap.set('n', '<space>wl', function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      end, bufopts)
+      vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+      vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+      vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+      vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
     end
 
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        require('lspconfig').util.nvim_multiline_command [[
-        :hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-        :hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-        :hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-        augroup lsp_document_highlight
-            autocmd!
-            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-        ]]
-    end
-  end
+    local lsp_flags = {
+      debounce_text_changes = 150,
+    }
 
   local servers = {
-   'bashls',
    'cssls',
    'denols',
    'dockerls',
-   'gopls',
    'html',
-   'pyright',
    'rust_analyzer',
-   'terraformls',
    'tsserver',
-   'yamlls'
   }
-  for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-      on_attach = on_attach,
-    }
-  end
 
-  -- LSP Specific Settings
-  nvim_lsp.terraformls.setup{
+  require('lspconfig')['bashls'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+  }
+
+  require('lspconfig')['gopls'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+  }
+
+  require('lspconfig')['pyright'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+  }
+
+  require('lspconfig')['tsserver'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+  }
+
+  require('lspconfig')['terraformls'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
     filetypes = { "terraform", "hcl", "tf" }
   }
-  nvim_lsp.yamlls.setup{
+
+  require('lspconfig')['yamlls'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
     filetypes = { "yaml", "yml" },
-    cmd = { "node",
-            "/home/aj/workspace/src/github.com/redhat-developer/yaml-language-server/out/server/src/server.js",
-            "--stdio"},
     settings = {
       validate = true;
     }
   }
+
+
+  -- LSP Specific Settings
 EOF
 
 " Completion
