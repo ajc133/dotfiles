@@ -3,6 +3,7 @@
 sudo apt-get update -y
 sudo apt-get install -y curl \
     git \
+    gnome-tweaks \
     iperf \
     jq \
     keychain \
@@ -13,7 +14,8 @@ sudo apt-get install -y curl \
 
 # Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
 if [ ! -f "/usr/bin/nvim" ]; then
-	sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -O /usr/bin/nvim && sudo chmod +x /usr/bin/nvim
+	sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb -O /tmp/nvim.deb && \
+		sudo apt install /tmp/nvim.deb
 fi
 
 vimplug_path="${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim 
@@ -48,6 +50,6 @@ fi
 if [ ! -d "$HOME/.tmux" ]; then
 	git clone https://github.com/gpakosz/.tmux.git $HOME/.tmux
 	ln -sf $HOME/.tmux/.tmux.conf ~/.tmux.conf
-	cp $(chezmoi source-path)/dot_tmux.conf.local ~/.tmux.conf.local
+	cp $($HOME/bin/chezmoi source-path)/dot_tmux.conf.local ~/.tmux.conf.local
 fi
 
