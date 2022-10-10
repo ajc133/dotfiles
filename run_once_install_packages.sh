@@ -2,6 +2,7 @@
 
 sudo apt-get update -y
 sudo apt-get install -y curl \
+    fd-find \
     git \
     gnome-tweaks \
     iperf \
@@ -18,11 +19,9 @@ if [ ! -f "/usr/bin/nvim" ]; then
 		sudo apt install /tmp/nvim.deb
 fi
 
-vimplug_path="${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim 
-# vimplug
-if [ ! -f "$vimplug_path" ]; then
-    curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+packpath="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
+if [ ! -f "$packpath" ]; then
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim "$packpath"
 fi
 
 # clone oh-my-zsh

@@ -1,0 +1,52 @@
+" Piecemeal move to init.lua
+lua require('init')
+
+" call plug#begin('~/.config/nvim/plugged')
+" 
+" 
+"   " FZF: https://github.com/junegunn/fzf.vim
+"   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"   Plug 'junegunn/fzf.vim'
+" 
+" call plug#end()
+" 
+" " Automatically install missing plugins on startup
+" autocmd VimEnter *
+"   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+"   \|   PlugInstall --sync | q
+"   \| endif
+" 
+" " ----------------------- Plugin Settings ----------------------------------------
+" 
+" " FZF
+" function! RipgrepFzf(query, fullscreen)
+"     let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+"     let initial_command = printf(command_fmt, shellescape(a:query))
+"     let reload_command = printf(command_fmt, '{q}')
+"     let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"     call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+" endfunction
+" 
+" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+" 
+" nnoremap <leader>ff <cmd>GFiles<cr>
+" nnoremap <leader>fg <cmd>RG<cr>
+" nnoremap <leader>fb <cmd>Buffers<cr>
+" let g:fzf_buffers_jump = 1
+" 
+" " Git - vim-fugitive
+" 
+" nnoremap <leader>gb <cmd>Git blame<cr>
+" 
+" " --------------------------------------------------------------------------------
+" 
+" 
+" " Completion
+" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" " -------------------- LSP ---------------------------------
+" 
+" 
+" nnoremap <leader>ff <cmd>GFiles<cr>
+" nnoremap <leader>u <cmd>'<,'>s/["${}]//g<CR>

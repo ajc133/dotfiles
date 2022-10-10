@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/bin:/usr/local/go/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/bin:/usr/local/go/bin:/usr/lib/cargo/bin:$PATH
 export GOPATH=$HOME/workspace
 
 # Path to your oh-my-zsh installation.
@@ -11,6 +11,9 @@ export EDITOR="nvim"
 {{ else }}
 export EDITOR="vim"
 {{ end -}}
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export MYVIMRC="$XDG_CONFIG_HOME/nvim/lua/init.lua"
 
 export AWS_SKD_LOAD_CONFIG=1
 
