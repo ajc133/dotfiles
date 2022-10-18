@@ -4,6 +4,9 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(
   function(use)
  
+    -- Get startuptime with `:StartupTime`
+    use 'dstein64/vim-startuptime'
+
     -- "Packer can manage itself"
     use 'wbthomason/packer.nvim'
   
@@ -25,7 +28,7 @@ return require('packer').startup(
     use 'tpope/vim-fugitive'
   
     -- Colorschemes
-    use({'lifepillar/vim-gruvbox8', opt = true})
+    use 'lifepillar/vim-gruvbox8'
  
     -- LSP
     use 'neovim/nvim-lspconfig'
