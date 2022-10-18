@@ -10,7 +10,7 @@ return require('packer').startup(
     -- Status line
     use {
       'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      requires = { 'kyazdani42/nvim-web-devicons' },
       config = function() require('lualine').setup() end
     }
 
@@ -40,9 +40,9 @@ return require('packer').startup(
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
  
-    -- Snippets
-    use 'SirVer/ultisnips'
-    use 'quangnguyen30192/cmp-nvim-ultisnips'
+    -- FIXME: Snippets
+    -- use 'SirVer/ultisnips'
+    -- use 'quangnguyen30192/cmp-nvim-ultisnips'
  
   end
 )

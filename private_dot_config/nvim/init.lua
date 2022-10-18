@@ -60,6 +60,7 @@ vmap('>', '>gv')
 -- vim.opt.colorscheme = 'desert' ??? 
 --vim.cmd('set termguicolors')
 vim.cmd('colorscheme gruvbox8')
+vim.cmd('set background=dark')
 vim.cmd('set hidden')
 vim.opt.mouse = 'a'
 
