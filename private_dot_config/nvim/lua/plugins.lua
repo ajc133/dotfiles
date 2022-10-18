@@ -42,7 +42,12 @@ return require('packer').startup(
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
- 
+
+    use {
+      'nvim-telescope/telescope.nvim', tag = '0.1.0',
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
     -- FIXME: Snippets
     -- use 'SirVer/ultisnips'
     -- use 'quangnguyen30192/cmp-nvim-ultisnips'
