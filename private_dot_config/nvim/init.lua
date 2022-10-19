@@ -5,7 +5,7 @@ vim.g.mapleader = " "
 
 -- Convenience
 function map(mode, shortcut, command)
-  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+  vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
 end
 
 function nmap(shortcut, command)
@@ -32,7 +32,7 @@ nmap('<C-j>', '<C-w>j')
 nmap('<C-k>', '<C-w>k')
 nmap('<C-l>', '<C-w>l')
 nmap('<Leader>x', ':bd<cr>')
-nmap('<Leader>d', ':wq<CR>')
+nmap('<Leader>d', ':wq<cr>')
 nmap('<Leader>n', ':cn<cr>')
 nmap('<Leader>p', ':cp<cr>')
 
@@ -197,7 +197,10 @@ require("nvim-treesitter.configs").setup {
 
 -- Telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', 'ff', builtin.find_files, {})
-vim.keymap.set('n', 'fg', builtin.live_grep, {})
-vim.keymap.set('n', 'fb', builtin.buffers, {})
-vim.keymap.set('n', 'fh', builtin.help_tags, {})
+nmap('<Leader>ff', builtin.find_files)
+nmap('<Leader>fg', builtin.live_grep)
+nmap('<Leader>fb', builtin.buffers)
+nmap('<Leader>fh', builtin.help_tags)
+
+-- Git - vim-fugitive
+nmap('<Leader>gb', ':Git blame<cr>')
