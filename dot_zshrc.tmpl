@@ -97,6 +97,17 @@ alias zshu="vim ~/.zshrc"
 
 complete -C '/usr/bin/aws_completer' aws
 
+
+unalias gsw
+function gsw () {
+  if [ -z "$1" ]
+  then
+    git switch $(git branch --all | fzf | tr -d '[:space:]') 
+  else
+    git switch "$1"
+  fi
+}
+
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit
 compinit -u
@@ -142,4 +153,3 @@ function aas () {
 {{ if eq .chezmoi.os "darwin" }}
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 {{ end }}
-
