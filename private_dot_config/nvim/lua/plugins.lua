@@ -13,7 +13,7 @@ return require('packer').startup(
     -- Status line
     use {
       'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons' },
+      requires = { 'nvim-tree/nvim-web-devicons' },
       config = function() require('lualine').setup() end
     }
 
@@ -45,7 +45,7 @@ return require('packer').startup(
 
     use {
       'nvim-telescope/telescope.nvim', tag = '0.1.0',
-      requires = { {'nvim-lua/plenary.nvim'} }
+      requires = { {'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons'} }
     }
 
     -- FIXME: Snippets

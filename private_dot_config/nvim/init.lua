@@ -33,9 +33,13 @@ nmap('<C-k>', '<C-w>k')
 nmap('<C-l>', '<C-w>l')
 nmap('<Leader>x', ':bd<cr>')
 nmap('<Leader>d', ':wq<CR>')
-nmap('<Leader>sv', ':source $MYVIMRC<cr>')
 nmap('<Leader>n', ':cn<cr>')
 nmap('<Leader>p', ':cp<cr>')
+
+-- Search-replace in file
+-- nmap('<Leader>s', ':%s/\\<<C-r><C-w>\\>/') -- Getting invalid escape sequence
+vim.cmd(':nnoremap <Leader>s :%s/<C-r><C-w>/') -- Matches word
+vim.cmd(':nnoremap <Leader>a :%s/<C-r><C-w>/') -- Matches WORD. Might be a pain
 
 
 -- Insert mode mappings
