@@ -125,6 +125,13 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "setlocal ts=2 sw=2 expandtab" 
 })
 
+-- Remove trailing spaces in yaml
+vim.cmd([[
+augroup dotfiles
+  au! BufWritePre *.yaml %s/\s\+$//e
+  au! BufWritePre *.yml %s/\s\+$//e
+augroup END
+]])
 
 -- Highlight yank
 vim.api.nvim_create_autocmd(
