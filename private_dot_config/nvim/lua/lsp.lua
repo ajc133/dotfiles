@@ -84,6 +84,11 @@ require('lspconfig')['terraformls'].setup{
   filetypes = { "terraform", "hcl", "tf" }
 }
 
+require('lspconfig')['rust_analyzer'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+
 require('lspconfig')['yamlls'].setup{
   on_attach = on_attach,
   flags = lsp_flags,

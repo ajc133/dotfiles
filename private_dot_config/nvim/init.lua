@@ -61,8 +61,6 @@ vmap('>', '>gv')
 -- Settings --
 --------------
 
--- vim.opt.colorscheme = 'desert' ??? 
---vim.cmd('set termguicolors')
 vim.cmd('colorscheme gruvbox8')
 vim.cmd('set background=dark')
 vim.cmd('set hidden')
@@ -83,6 +81,8 @@ vim.opt.smartcase = true
 
 vim.opt.autoindent = true
 
+vim.opt.list = true
+vim.opt.listchars = { tab = '> ', trail = '·', nbsp = '+'}
 
 ------------------
 -- Autocommands --
@@ -122,7 +122,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   group = "bufcheck",
   pattern = { "*.ts", "*.tf", "*.yaml", "*.yml"  },
-  command = "setlocal ts=2 sw=2 expandtab" 
+  command = "setlocal ts=2 sw=2 expandtab"
 })
 
 -- Remove trailing spaces in yaml
@@ -138,6 +138,15 @@ vim.api.nvim_create_autocmd(
     { "TextYankPost" },
     { pattern = { "*" }, command = "lua require'vim.highlight'.on_yank()" }
 )
+
+-- Highlight all search matches only while typing
+vim.cmd([[
+augroup vimrc-incsearch-highlight
+  autocmd!
+  autocmd CmdlineEnter /,\? :set hlsearch
+  autocmd CmdlineLeave /,\? :set nohlsearch
+augroup END
+]])
 
 -------------
 -- Plugins --
