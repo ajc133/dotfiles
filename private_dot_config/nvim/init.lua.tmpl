@@ -33,8 +33,7 @@ nmap('<C-k>', '<C-w>k')
 nmap('<C-l>', '<C-w>l')
 nmap('<Leader>x', ':bd<cr>')
 nmap('<Leader>d', ':wq<cr>')
-nmap('<Leader>n', ':cn<cr>')
-nmap('<Leader>p', ':cp<cr>')
+nmap('<Leader>p', '$p<cr>') -- Paste to end of line
 
 -- Search-replace in file
 -- nmap('<Leader>s', ':%s/\\<<C-r><C-w>\\>/') -- Getting invalid escape sequence
@@ -61,7 +60,7 @@ vmap('>', '>gv')
 -- Settings --
 --------------
 
-vim.cmd('colorscheme gruvbox8')
+vim.cmd('colorscheme {{ .nvim_colorscheme }}')
 vim.cmd('set background=dark')
 vim.cmd('set hidden')
 vim.opt.mouse = 'a'
