@@ -12,7 +12,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.jet('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<Leader>wl', function()
@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<Leader>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<Leader>f', vim.lsp.buf.format, bufopts)
 end
 
 local lsp_flags = {
@@ -82,6 +82,11 @@ require('lspconfig')['terraformls'].setup{
   on_attach = on_attach,
   flags = lsp_flags,
   filetypes = { "terraform", "hcl", "tf" }
+}
+
+require('lspconfig')['rust_analyzer'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
 }
 
 require('lspconfig')['yamlls'].setup{

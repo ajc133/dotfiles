@@ -2,6 +2,7 @@
 
 sudo apt-get update -y
 sudo apt-get install -y curl \
+    direnv \
     fd-find \
     git \
     gnome-tweaks \
