@@ -16,22 +16,34 @@ return require('packer').startup(
       requires = { 'nvim-tree/nvim-web-devicons' },
       config = function() require('lualine').setup() end
     }
+    use {
+      'akinsho/bufferline.nvim',
+      tag = "v3.*",
+      requires = 'nvim-tree/nvim-web-devicons',
+      config = function() require('bufferline').setup() end
+    }
 
     -- Syntax Highlighting
     -- use {
     --   'nvim-treesitter/nvim-treesitter',
     --   run = ':TSUpdate'
     -- }
-    use 'p00f/nvim-ts-rainbow'
+    -- use {
+    --   'p00f/nvim-ts-rainbow',
+    --   requires = { 'nvim-treesitter/nvim-treesitter' }
+    -- }
 
    -- Git commands
     use 'tpope/vim-fugitive'
 
     -- Colorschemes
     use 'lifepillar/vim-gruvbox8'
+    use 'frankier/neovim-colors-solarized-truecolor-only'
+    use 'folke/tokyonight.nvim'
 
     -- LSP
     use 'neovim/nvim-lspconfig'
+    use 'williamboman/mason.nvim'
 
     -- Comment things out
     use 'tpope/vim-commentary'
