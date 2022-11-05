@@ -4,19 +4,19 @@ vim.g.mapleader = " "
 --------------
 
 -- Convenience
-function map(mode, shortcut, command)
+local function map(mode, shortcut, command)
   vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
 end
 
-function nmap(shortcut, command)
+local function nmap(shortcut, command)
   map('n', shortcut, command)
 end
 
-function imap(shortcut, command)
+local function imap(shortcut, command)
   map('i', shortcut, command)
 end
 
-function vmap(shortcut, command)
+local function vmap(shortcut, command)
   map('v', shortcut, command)
 end
 
@@ -60,14 +60,13 @@ vmap('>', '>gv')
 -- Settings --
 --------------
 
+vim.opt.termguicolors = true
+vim.opt.background = dark
 vim.cmd('colorscheme {{ .nvim_colorscheme }}')
-vim.cmd('set background=dark')
 vim.cmd('set hidden')
 vim.opt.mouse = 'a'
 
 vim.cmd('set shiftwidth=2')
--- vim.opt.shiftwidth = 2
-vim.opt.background = dark
 vim.opt.cmdheight = 2
 vim.opt.completeopt = {'menuone', 'noselect'}
 vim.opt.number = true
@@ -124,6 +123,10 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "setlocal ts=2 sw=2 expandtab"
 })
 
+-- Set filetype for templates to their base filetype
+vim.cmd('au BufRead,BufNewFile *.lua.tmpl setfiletype lua')
+vim.cmd('au BufRead,BufNewFile *.sh.tmpl setfiletype bash')
+
 -- Remove trailing spaces in yaml
 vim.cmd([[
 augroup dotfiles
@@ -156,6 +159,7 @@ require('plugins')
 
 -- Configure LSP
 require('lsp')
+require("mason").setup()
 
 -- Telescope fuzzy finder
 require('telescope').setup{
@@ -171,7 +175,7 @@ require('telescope').setup{
       }
     }
   },
-  colorscheme = 'gruvbox8',
+  colorscheme = '{{ .nvim_colorscheme }}',
   pickers = {
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {
@@ -192,32 +196,32 @@ require('telescope').setup{
 
 
 -- Syntax Highlighting
-require("nvim-treesitter.configs").setup {
-  ensure_installed = { "json", "javascript", "python", "rust", "lua", "go", "gomod", "bash" },
-  auto_install = false,
-  highlight = {
-    enable = true,
-
-    -- Disable for large files
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-
-  },
-  -- ...
-  rainbow = {
-    enable = true,
-    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- colors = {}, -- table of hex strings
-    -- termcolors = {} -- table of colour name strings
-  }
-}
+-- require("nvim-treesitter.configs").setup {
+--   ensure_installed = { "json", "javascript", "python", "rust", "lua", "go", "gomod", "bash" },
+--   auto_install = false,
+--   highlight = {
+--     enable = true,
+-- 
+--     -- Disable for large files
+--     disable = function(lang, buf)
+--       local max_filesize = 100 * 1024 -- 100 KB
+--       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+--       if ok and stats and stats.size > max_filesize then
+--         return true
+--       end
+--     end,
+--
+--   },
+--   -- ...
+--   rainbow = {
+--     enable = true,
+--     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+--     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+--     max_file_lines = nil, -- Do not enable for files with more than n lines, int
+--     -- colors = {}, -- table of hex strings
+--     -- termcolors = {} -- table of colour name strings
+--   }
+-- }
 ---------------------
 -- Plugin Mappings --
 ---------------------

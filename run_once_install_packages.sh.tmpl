@@ -1,24 +1,38 @@
 #!/bin/bash
+set -x
 
+{{ if eq .chezmoi.osRelease.id "manjaro" -}}
+sudo pacman -Syu
+sudo pacman --noconfirm -S \
+    fd \
+    nodejs \
+    neovim \
+    ripgrep \
+{{ else if eq .chezmoi.osRelease.id "debian" -}}
 sudo apt-get update -y
-sudo apt-get install -y curl \
-    direnv \
-    fd-find \
-    git \
+sudo apt-get install -y \
     gnome-tweaks \
+    fd-find \
+    silversearcher-ag \
+{{ end -}}
+    curl \
+    direnv \
+    git \
     iperf \
     jq \
     keychain \
     nmap \
-    silversearcher-ag \
     tmux \
+    unzip \
     zsh \
 
+{{ if eq .chezmoi.osRelease.id "debian" -}}
 # Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
 if [ ! -f "/usr/bin/nvim" ]; then
 	sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb -O /tmp/nvim.deb && \
 		sudo apt install /tmp/nvim.deb
 fi
+{{ end -}}
 
 packpath="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 if [ ! -f "$packpath" ]; then
