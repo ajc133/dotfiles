@@ -4,6 +4,7 @@ set -x
 {{ if eq .chezmoi.osRelease.id "manjaro" -}}
 sudo pacman -Syu
 sudo pacman --noconfirm -S \
+    bind-tools \
     fd \
     nodejs \
     neovim \

@@ -73,6 +73,7 @@ alias ch="chezmoi"
 alias cht="~/bin/cht.sh"
 alias chx="chmod +x"
 alias digs="dig +noall +answer"
+alias dps='docker ps --format "{{`{{.Names}}`}}\t{{`{{.ID}}`}}\t{{`{{.State}}`}}" | column -t'
 alias fixmerge="git diff --name-only | uniq | xargs nvim"
 alias gdh="git diff HEAD^"
 alias gdm="git diff $(git_main_branch)"
@@ -120,28 +121,6 @@ lt() {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(direnv hook zsh)"
-
-# Colors from lonesnake
-readonly CLR_BOLD="\033[1m"  # bold
-readonly CLR_END="\033[0m"  # end-marker
-function aap () {
-    echo -n -e "${CLR_BOLD}Which Ansible target?${CLR_END} "
-    local target_host="$( ansible-inventory --graph all | grep -o '[a-z].*[a-z0-9]' | fzf --reverse --height 30%)"
-    echo -e "\r${CLR_BOLD}Which Ansible target?${CLR_END} $target_host"
-    echo -n -e "${CLR_BOLD}Which playbook?${CLR_END} "
-    local playbook="$(find playbooks -type f -depth 2 | sort | fzf --reverse --height 30%)"
-    echo -e "\r${CLR_BOLD}Which playbook?${CLR_END} $target_host"
-    print -z "ansible-playbook --limit ${target_host} ${playbook}"
-}
-function aas () {
-    echo -n -e "${CLR_BOLD}Which Ansible target?${CLR_END} "
-    local target_host="$( ansible-inventory --graph all | grep -o '[a-z].*[a-z0-9]' | fzf --reverse --height 30%)"
-    echo -e "\r${CLR_BOLD}Which Ansible target?${CLR_END} $target_host"
-    echo -n -e "${CLR_BOLD}Which shell command?${CLR_END} "
-    local shell_command=""
-    read shell_command
-    print -z "ansible ${target_host} -m shell -a '${shell_command}'"
-}
 
 {{ if eq .chezmoi.os "linux" }}
 # For Loading the SSH key
