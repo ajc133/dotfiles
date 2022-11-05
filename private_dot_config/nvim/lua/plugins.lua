@@ -18,10 +18,10 @@ return require('packer').startup(
     }
 
     -- Syntax Highlighting
-    use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
-    }
+    -- use {
+    --   'nvim-treesitter/nvim-treesitter',
+    --   run = ':TSUpdate'
+    -- }
     use 'p00f/nvim-ts-rainbow'
 
    -- Git commands

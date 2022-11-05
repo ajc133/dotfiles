@@ -113,7 +113,7 @@ vim.api.nvim_create_augroup("bufcheck", { clear = true })
 -- Golang
 vim.api.nvim_create_autocmd("FileType", {
   group = "bufcheck",
-  pattern = { "*.go" },
+  pattern = { "*.go", "Caddyfile" },
   command = "setlocal ts=4 sw=4 sts=0 noexpandtab" 
 })
 
