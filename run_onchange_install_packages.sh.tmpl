@@ -9,7 +9,7 @@ sudo pacman --noconfirm -S \
     nodejs \
     neovim \
     ripgrep \
-{{ else if eq .chezmoi.osRelease.id "debian" -}}
+{{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
 sudo apt-get update -y
 sudo apt-get install -y \
     gnome-tweaks \
