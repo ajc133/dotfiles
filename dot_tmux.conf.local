@@ -367,9 +367,6 @@ bind -n M-j select-pane -D  # move down
 bind -n M-k select-pane -U  # move up
 bind -n M-l select-pane -R  # move right
 
-set -g default-terminal "tmux-256color"
-set-option -sa terminal-overrides ',xterm-256color:RGB'
-
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here
