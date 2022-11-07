@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 
+{{ if not (eq .chezmoi.os "darwin") -}}
 {{ if eq .chezmoi.osRelease.id "manjaro" -}}
 sudo pacman -Syu
 sudo pacman --noconfirm -S \
@@ -27,9 +28,14 @@ sudo apt-get install -y \
     nmap \
     tmux \
     unzip \
-    zsh \
+    zsh
+{{ end -}}
 
-{{ if eq .chezmoi.osRelease.id "debian" -}}
+{{ if eq .chezmoi.os "darwin" -}}
+if [ ! -f "/usr/local/bin/nvim" ]; then
+  brew install neovim
+fi
+{{ else if eq .chezmoi.osRelease.id "debian" -}}
 # Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
 if [ ! -f "/usr/bin/nvim" ]; then
 	sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb -O /tmp/nvim.deb && \
