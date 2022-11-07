@@ -14,7 +14,7 @@ return require('packer').startup(
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'nvim-tree/nvim-web-devicons' },
-      config = function() require('lualine').setup() end
+      config = function() require('lualine').setup({}) end
     }
     use {
       'akinsho/bufferline.nvim',
@@ -40,6 +40,11 @@ return require('packer').startup(
     use 'lifepillar/vim-gruvbox8'
     use 'frankier/neovim-colors-solarized-truecolor-only'
     use 'folke/tokyonight.nvim'
+    use {
+      'marko-cerovac/material.nvim',
+      config = function() require('material').setup({lualine_style = 'default'}) end,
+    }
+
 
     -- LSP
     use 'neovim/nvim-lspconfig'
