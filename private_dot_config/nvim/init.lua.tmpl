@@ -61,7 +61,7 @@ vmap('>', '>gv')
 --------------
 
 vim.opt.termguicolors = true
-vim.opt.background = dark
+vim.opt.background = 'dark'
 vim.cmd('colorscheme {{ .nvim_colorscheme }}')
 vim.cmd('set hidden')
 vim.opt.mouse = 'a'
@@ -113,7 +113,7 @@ vim.api.nvim_create_augroup("bufcheck", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
   group = "bufcheck",
   pattern = { "*.go", "Caddyfile" },
-  command = "setlocal ts=4 sw=4 sts=0 noexpandtab" 
+  command = "setlocal ts=4 sw=4 sts=0 noexpandtab"
 })
 
 -- Typescript, Terraform, YAML
