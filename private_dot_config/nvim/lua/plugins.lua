@@ -14,14 +14,21 @@ return require('packer').startup(
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'nvim-tree/nvim-web-devicons' },
-      config = function() require('lualine').setup({}) end
+      config = function()
+	require('lualine').setup({
+	  sections = {
+	    lualine_a = { { 'buffers', show_filename_only = false } }
+	  }
+	})
+      end
     }
-    use {
-      'akinsho/bufferline.nvim',
-      tag = "v3.*",
-      requires = 'nvim-tree/nvim-web-devicons',
-      config = function() require('bufferline').setup() end
-    }
+
+    -- use {
+    --   'akinsho/bufferline.nvim',
+    --   tag = "v3.*",
+    --   requires = 'nvim-tree/nvim-web-devicons',
+    --   config = function() require('bufferline').setup() end
+    -- }
 
     -- Syntax Highlighting
     -- use {

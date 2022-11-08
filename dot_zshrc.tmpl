@@ -1,3 +1,4 @@
+zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/bin:/usr/local/go/bin:/usr/lib/cargo/bin:$HOME/.ssi/bin:$PATH
 export GOPATH=$HOME/workspace
@@ -6,9 +7,9 @@ export GOPATH=$HOME/workspace
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+# eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv virtualenv-init -)"
 {{ end }}
 
 # Path to your oh-my-zsh installation.
@@ -44,6 +45,7 @@ plugins=(
     kubectl
     tmux
     vi-mode
+    you-should-use
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
