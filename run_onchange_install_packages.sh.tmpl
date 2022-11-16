@@ -35,7 +35,7 @@ sudo apt-get install -y \
 if [ ! -f "/usr/local/bin/nvim" ]; then
   brew install neovim
 fi
-{{ else if eq .chezmoi.osRelease.id "debian" -}}
+{{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
 # Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
 if [ ! -f "/usr/bin/nvim" ]; then
 	sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb -O /tmp/nvim.deb && \
