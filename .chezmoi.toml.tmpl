@@ -1,8 +1,10 @@
 {{- $git_email := promptStringOnce . "git_email" "Git email address" -}}
 {{- $zsh_theme := promptStringOnce . "zsh_theme" "ZSH theme" -}}
 {{- $nvim_colorscheme := promptStringOnce . "nvim_colorscheme" "Neovim colorscheme" -}}
+{{- $term_var := promptStringOnce . "term_var" "TERM var" -}}
 
 [data]
   git_email = {{ $git_email | quote }}
   zsh_theme = {{ $zsh_theme | quote }}
   nvim_colorscheme = {{ $nvim_colorscheme | quote }}
+  term_var = {{ $term_var | quote }}
