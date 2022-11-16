@@ -84,6 +84,5 @@ fi
 if [ ! -d "$HOME/.tmux" ]; then
 	git clone https://github.com/gpakosz/.tmux.git $HOME/.tmux
 	ln -sf $HOME/.tmux/.tmux.conf ~/.tmux.conf
-	cp $($HOME/bin/chezmoi source-path)/dot_tmux.conf.local ~/.tmux.conf.local
 fi
 
