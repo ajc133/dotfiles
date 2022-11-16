@@ -110,23 +110,18 @@ augroup END
 -- Filetype settings
 vim.api.nvim_create_augroup("bufcheck", { clear = true })
 
--- Golang
-vim.api.nvim_create_autocmd("FileType", {
-  group = "bufcheck",
-  pattern = { "*.go", "Caddyfile" },
-  command = "setlocal ts=4 sw=4 sts=0 noexpandtab"
-})
+-- FIXME: vim-go breaks this
+-- Set filetype for templates to their base filetype
+vim.cmd('au BufRead,BufNewFile *.lua.tmpl setfiletype lua')
+vim.cmd('au BufRead,BufNewFile *.sh.tmpl setfiletype bash')
+
 
 -- Typescript, Terraform, YAML
 vim.api.nvim_create_autocmd("FileType", {
   group = "bufcheck",
   pattern = { "*.ts", "*.tf", "*.yaml", "*.yml"  },
-  command = "setlocal ts=2 sw=2 expandtab"
+  command = "setlocal tabstop=2 shiftwidth=2 expandtab"
 })
-
--- Set filetype for templates to their base filetype
-vim.cmd('au BufRead,BufNewFile *.lua.tmpl setfiletype lua')
-vim.cmd('au BufRead,BufNewFile *.sh.tmpl setfiletype bash')
 
 -- Remove trailing spaces in yaml
 vim.cmd([[
@@ -158,6 +153,13 @@ augroup END
 -- Installs plugins
 require('plugins')
 
+-- Golang setup
+vim.api.nvim_create_autocmd("FileType", {
+  group = "bufcheck",
+  pattern = { "*.go", "Caddyfile" },
+  command = "setlocal tabstop=8 shiftwidth=8 sts=0 noexpandtab"
+})
+
 -- colorschemin'
 vim.g.material_style = "darker" -- when colorscheme == material
 vim.cmd('colorscheme {{ .nvim_colorscheme }}')
@@ -165,6 +167,7 @@ vim.cmd('colorscheme {{ .nvim_colorscheme }}')
 -- Configure LSP
 require('lsp')
 require("mason").setup()
+vim.cmd('let g:go_fmt_command = "gofmt"')
 
 -- Telescope fuzzy finder
 require('telescope').setup{
@@ -182,7 +185,6 @@ require('telescope').setup{
   },
   colorscheme = 'auto',
 }
-
 
 -- Syntax Highlighting
 -- require("nvim-treesitter.configs").setup {

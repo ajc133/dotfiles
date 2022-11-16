@@ -57,6 +57,9 @@ return require('packer').startup(
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
 
+    -- Golang
+    use 'fatih/vim-go'
+
     -- Comment things out
     use 'tpope/vim-commentary'
 
