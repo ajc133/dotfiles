@@ -21,7 +21,6 @@ local function vmap(shortcut, command)
 end
 
 -- Normal mode mappings
-
 -- TAB in normal mode will move to text buffer
 nmap('<TAB>', ':bnext<CR>')
 -- SHIFT-TAB will go back
@@ -72,6 +71,7 @@ vim.opt.number = true
 vim.opt.updatetime = 50
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.scrolloff = 12
 
 -- Search options
 vim.opt.hlsearch = false
