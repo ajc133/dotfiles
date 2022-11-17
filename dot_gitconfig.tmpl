@@ -1,23 +1,25 @@
 [user]
-	email = {{ .git_email }}
-	name = AJ Collins
+    email = {{ .git_email }}
+    name = AJ Collins
 [pull]
-	rebase = true
+    rebase = true
 
 [core]
-    pager = delta
-
-[interactive]
-    diffFilter = delta --color-only
-
-[delta]
-    navigate = true
+    difftool = true
 
 [merge]
     conflictstyle = diff3
 
 [diff]
+    tool = difftastic
     colorMoved = default
+    external = difft
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
 
 [init]
     defaultBranch = main

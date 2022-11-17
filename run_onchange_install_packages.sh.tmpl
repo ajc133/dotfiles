@@ -8,6 +8,7 @@ sudo pacman --noconfirm -S \
     aws-cli-v2 \
     bind-tools \
     fd \
+    hexyl \
     nodejs \
     neovim \
     ripgrep \
@@ -15,13 +16,15 @@ sudo pacman --noconfirm -S \
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
 sudo apt-get update -y
 sudo apt-get install -y \
-    gnome-tweaks \
     fd-find \
+    gnome-tweaks \
+    hexyl \
     silversearcher-ag \
 {{ end -}}
     curl \
     direnv \
     git \
+    git-delta \
     iperf \
     jq \
     keychain \
@@ -29,6 +32,13 @@ sudo apt-get install -y \
     tmux \
     unzip \
     zsh
+{{ end -}}
+
+{{ if eq .chezmoi.os "darwin" -}}
+brew install hexyl \
+  git-delta \
+  sd \
+  difftastic
 {{ end -}}
 
 {{ if eq .chezmoi.os "darwin" -}}
