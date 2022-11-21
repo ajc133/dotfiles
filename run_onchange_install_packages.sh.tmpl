@@ -53,8 +53,19 @@ if [ ! -f "/usr/bin/nvim" ]; then
 fi
 
 # Install ripgrep
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-sudo dpkg -i ripgrep_13.0.0_amd64.deb
+if ! [ -x "$(command -v rg)" ]; then
+  curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+  sudo dpkg -i ripgrep_13.0.0_amd64.deb
+fi
+
+# Install difftastic
+if ! [ -x "$(command -v difft)" ]; then
+  curl -L -o /tmp/difftastic.tgz https://github.com/Wilfred/difftastic/releases/download/0.38.0/difft-x86_64-unknown-linux-gnu.tar.gz
+  tar -xzvf /tmp/difftastic.tgz
+  sudo mv difft /usr/local/bin
+  sudo chmod +x /usr/local/bin/difft
+fi
+
 {{ end -}}
 
 packpath="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
