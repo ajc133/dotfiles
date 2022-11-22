@@ -42,6 +42,7 @@ return require('packer').startup(
 
    -- Git commands
     use 'tpope/vim-fugitive'
+    use 'shumphrey/fugitive-gitlab.vim'
 
     -- Colorschemes
     use 'lifepillar/vim-gruvbox8'

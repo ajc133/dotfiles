@@ -226,4 +226,10 @@ nmap('<Leader>fb', builtin.buffers)
 nmap('<Leader>fh', builtin.help_tags)
 
 -- Git - vim-fugitive
-nmap('<Leader>gb', ':Git blame<cr>')
+nmap('<Leader>gb', ':Git blame<cr>')     -- git blame %
+nmap('<Leader>gw', ':Gwrite<cr>')        -- git add %
+nmap('<Leader>gc', ':Git commit<cr>')    -- git commit
+nmap('<Leader>grm', ':Gremove<cr>')      -- git rm %
+nmap('<Leader>gmv', ':Gmove ')           -- git mv <path>
+
+vim.cmd("let g:fugitive_gitlab_domains = {'ssh://git.2nd.io': 'https://git.2nd.io'}")
