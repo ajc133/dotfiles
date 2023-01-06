@@ -5,19 +5,19 @@ vim.g.mapleader = " "
 
 -- Convenience
 local function map(mode, shortcut, command)
-  vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
+	vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
 end
 
 local function nmap(shortcut, command)
-  map('n', shortcut, command)
+	map('n', shortcut, command)
 end
 
 local function imap(shortcut, command)
-  map('i', shortcut, command)
+	map('i', shortcut, command)
 end
 
 local function vmap(shortcut, command)
-  map('v', shortcut, command)
+	map('v', shortcut, command)
 end
 
 -- Normal mode mappings
@@ -66,7 +66,7 @@ vim.opt.mouse = 'a'
 
 vim.cmd('set shiftwidth=2')
 vim.opt.cmdheight = 2
-vim.opt.completeopt = {'menuone', 'noselect'}
+vim.opt.completeopt = { 'menuone', 'noselect' }
 vim.opt.number = true
 vim.opt.updatetime = 50
 vim.opt.splitbelow = true
@@ -81,7 +81,7 @@ vim.opt.smartcase = true
 vim.opt.autoindent = true
 
 vim.opt.list = true
-vim.opt.listchars = { tab = '> ', trail = '·', nbsp = '+'}
+vim.opt.listchars = { tab = '> ', trail = '·', nbsp = '+' }
 
 ------------------
 -- Autocommands --
@@ -118,9 +118,9 @@ vim.cmd('au BufRead,BufNewFile *.sh.tmpl setfiletype bash')
 
 -- Typescript, Terraform, YAML
 vim.api.nvim_create_autocmd("FileType", {
-  group = "bufcheck",
-  pattern = { "*.ts", "*.tf", "*.yaml", "*.yml"  },
-  command = "setlocal tabstop=2 shiftwidth=2 expandtab"
+	group = "bufcheck",
+	pattern = { "*.ts", "*.tf", "*.yaml", "*.yml" },
+	command = "setlocal tabstop=2 shiftwidth=2 expandtab"
 })
 
 -- Remove trailing spaces in yaml
@@ -133,8 +133,8 @@ augroup END
 
 -- Highlight yank
 vim.api.nvim_create_autocmd(
-    { "TextYankPost" },
-    { pattern = { "*" }, command = "lua require'vim.highlight'.on_yank()" }
+	{ "TextYankPost" },
+	{ pattern = { "*" }, command = "lua require'vim.highlight'.on_yank()" }
 )
 
 -- Highlight all search matches only while typing
@@ -155,9 +155,9 @@ require('plugins')
 
 -- Golang setup
 vim.api.nvim_create_autocmd("FileType", {
-  group = "bufcheck",
-  pattern = { "*.go", "Caddyfile" },
-  command = "setlocal tabstop=8 shiftwidth=8 sts=0 noexpandtab"
+	group = "bufcheck",
+	pattern = { "*.go", "Caddyfile" },
+	command = "setlocal tabstop=8 shiftwidth=8 sts=0 noexpandtab"
 })
 
 -- colorschemin'
@@ -170,20 +170,20 @@ require("mason").setup()
 vim.cmd('let g:go_fmt_command = "gofmt"')
 
 -- Telescope fuzzy finder
-require('telescope').setup{
-  defaults = {
-    -- Default configuration for telescope goes here:
-    -- config_key = value,
-    mappings = {
-      i = {
-        -- map actions.which_key to <C-h> (default: <C-/>)
-        -- actions.which_key shows the mappings for your picker,
-        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-        ["<C-h>"] = "which_key"
-      }
-    }
-  },
-  colorscheme = 'auto',
+require('telescope').setup {
+	defaults = {
+		-- Default configuration for telescope goes here:
+		-- config_key = value,
+		mappings = {
+			i = {
+				-- map actions.which_key to <C-h> (default: <C-/>)
+				-- actions.which_key shows the mappings for your picker,
+				-- e.g. git_{create, delete, ...}_branch for the git_branches picker
+				["<C-h>"] = "which_key"
+			}
+		}
+	},
+	colorscheme = 'auto',
 }
 
 -- Syntax Highlighting
@@ -192,7 +192,7 @@ require('telescope').setup{
 --   auto_install = false,
 --   highlight = {
 --     enable = true,
--- 
+--
 --     -- Disable for large files
 --     disable = function(lang, buf)
 --       local max_filesize = 100 * 1024 -- 100 KB
@@ -226,10 +226,10 @@ nmap('<Leader>fb', builtin.buffers)
 nmap('<Leader>fh', builtin.help_tags)
 
 -- Git - vim-fugitive
-nmap('<Leader>gb', ':Git blame<cr>')     -- git blame %
-nmap('<Leader>gw', ':Gwrite<cr>')        -- git add %
-nmap('<Leader>gc', ':Git commit<cr>')    -- git commit
-nmap('<Leader>grm', ':Gremove<cr>')      -- git rm %
-nmap('<Leader>gmv', ':Gmove ')           -- git mv <path>
+nmap('<Leader>gb', ':Git blame<cr>') -- git blame %
+nmap('<Leader>gw', ':Gwrite<cr>') -- git add %
+nmap('<Leader>gc', ':Git commit<cr>') -- git commit
+nmap('<Leader>grm', ':Gremove<cr>') -- git rm %
+nmap('<Leader>gmv', ':Gmove ') -- git mv <path>
 
 vim.cmd("let g:fugitive_gitlab_domains = {'ssh://git.2nd.io': 'https://git.2nd.io'}")
