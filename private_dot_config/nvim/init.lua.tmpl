@@ -3,6 +3,11 @@ vim.g.mapleader = " "
 -- Mappings --
 --------------
 
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+
 -- Convenience
 local function map(mode, shortcut, command)
 	vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
@@ -214,6 +219,25 @@ require('telescope').setup {
 --   }
 -- }
 
+
+-- File tree
+require("nvim-tree").setup({
+	sort_by = "case_sensitive",
+	view = {
+		adaptive_size = true,
+		mappings = {
+			list = {
+				{ key = "u", action = "dir_up" },
+			},
+		},
+	},
+	renderer = {
+		group_empty = true,
+	},
+	filters = {
+		dotfiles = true,
+	},
+})
 ---------------------
 -- Plugin Mappings --
 ---------------------
@@ -233,3 +257,5 @@ nmap('<Leader>grm', ':Gremove<cr>') -- git rm %
 nmap('<Leader>gmv', ':Gmove ') -- git mv <path>
 
 vim.cmd("let g:fugitive_gitlab_domains = {'ssh://git.2nd.io': 'https://git.2nd.io'}")
+
+nmap('<Leader>o', ':NvimTreeFocus<CR>') -- open file explorer

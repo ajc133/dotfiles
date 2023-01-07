@@ -23,6 +23,15 @@ return require('packer').startup(
 			end
 		}
 
+		-- File tree
+		use {
+			'nvim-tree/nvim-tree.lua',
+			requires = {
+				'nvim-tree/nvim-web-devicons',
+			},
+			tag = 'nightly' -- optional, updated every week. (see issue #1193)
+		}
+
 		use {
 			'akinsho/bufferline.nvim',
 			tag = "v3.*",
