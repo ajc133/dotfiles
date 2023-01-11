@@ -41,18 +41,21 @@ return require('packer').startup(
 		}
 
 		-- Syntax Highlighting
-		-- use {
-		--   'nvim-treesitter/nvim-treesitter',
-		--   run = ':TSUpdate'
-		-- }
-		-- use {
-		--   'p00f/nvim-ts-rainbow',
-		--   requires = { 'nvim-treesitter/nvim-treesitter' }
-		-- }
+		use { -- Highlight, edit, and navigate code
+			'nvim-treesitter/nvim-treesitter',
+			run = function()
+				pcall(require('nvim-treesitter.install').update { with_sync = true })
+			end,
+		}
+		use { -- Additional text objects via treesitter
+			'nvim-treesitter/nvim-treesitter-textobjects',
+			after = 'nvim-treesitter',
+		}
 
-		-- Git commands
+		-- Git
 		use 'tpope/vim-fugitive'
 		use 'shumphrey/fugitive-gitlab.vim'
+		use 'lewis6991/gitsigns.nvim'
 
 		-- Colorschemes
 		use 'lifepillar/vim-gruvbox8'
@@ -75,11 +78,10 @@ return require('packer').startup(
 		use 'tpope/vim-commentary'
 
 		-- Completion
-		use 'hrsh7th/cmp-nvim-lsp'
-		use 'hrsh7th/cmp-buffer'
-		use 'hrsh7th/cmp-path'
-		use 'hrsh7th/cmp-cmdline'
-		use 'hrsh7th/nvim-cmp'
+		use { -- Autocompletion
+			'hrsh7th/nvim-cmp',
+			requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+		}
 
 		-- Telescope
 		use {
