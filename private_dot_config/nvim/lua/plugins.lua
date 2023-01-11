@@ -70,6 +70,7 @@ return require('packer').startup(
 		-- LSP
 		use 'neovim/nvim-lspconfig'
 		use 'williamboman/mason.nvim'
+		use 'j-hui/fidget.nvim'
 
 		-- Golang
 		use 'fatih/vim-go'

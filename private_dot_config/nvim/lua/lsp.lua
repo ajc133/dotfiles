@@ -4,6 +4,11 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
 
+
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
 local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -30,6 +35,7 @@ local lsp_flags = {
 }
 
 require('lspconfig')['sumneko_lua'].setup {
+	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
 	cmd = { "lua-language-server" },
@@ -59,37 +65,44 @@ require('lspconfig')['sumneko_lua'].setup {
 }
 
 require('lspconfig')['bashls'].setup {
+	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
 }
 
 require('lspconfig')['gopls'].setup {
+	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
 }
 
 require('lspconfig')['pyright'].setup {
+	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
 }
 
 require('lspconfig')['tsserver'].setup {
+	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
 }
 
 require('lspconfig')['terraformls'].setup {
+	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
 	filetypes = { "terraform", "hcl", "tf" }
 }
 
 require('lspconfig')['rust_analyzer'].setup {
+	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
 }
 
 require('lspconfig')['yamlls'].setup {
+	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
 	filetypes = { "yaml", "yml" },
