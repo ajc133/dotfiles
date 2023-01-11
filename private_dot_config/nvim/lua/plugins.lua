@@ -32,6 +32,7 @@ return require('packer').startup(
 			tag = 'nightly' -- optional, updated every week. (see issue #1193)
 		}
 
+		-- Status line
 		use {
 			'akinsho/bufferline.nvim',
 			tag = "v3.*",

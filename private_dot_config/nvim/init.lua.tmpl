@@ -69,7 +69,6 @@ vim.opt.background = 'dark'
 vim.cmd('set hidden')
 vim.opt.mouse = 'a'
 
-vim.cmd('set shiftwidth=2')
 vim.opt.cmdheight = 2
 vim.opt.completeopt = { 'menuone', 'noselect' }
 vim.opt.number = true
@@ -121,13 +120,6 @@ vim.cmd('au BufRead,BufNewFile *.lua.tmpl setfiletype lua')
 vim.cmd('au BufRead,BufNewFile *.sh.tmpl setfiletype bash')
 
 
--- Typescript, Terraform, YAML
-vim.api.nvim_create_autocmd("FileType", {
-	group = "bufcheck",
-	pattern = { "*.ts", "*.tf", "*.yaml", "*.yml" },
-	command = "setlocal tabstop=2 shiftwidth=2 expandtab"
-})
-
 -- Remove trailing spaces in yaml
 vim.cmd([[
 augroup dotfiles
@@ -157,13 +149,6 @@ augroup END
 
 -- Installs plugins
 require('plugins')
-
--- Golang setup
-vim.api.nvim_create_autocmd("FileType", {
-	group = "bufcheck",
-	pattern = { "*.go", "Caddyfile" },
-	command = "setlocal tabstop=8 shiftwidth=8 sts=0 noexpandtab"
-})
 
 -- colorschemin'
 vim.g.material_style = "darker" -- when colorscheme == material
