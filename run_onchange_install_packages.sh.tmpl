@@ -35,10 +35,10 @@ sudo apt-get install -y \
 {{ end -}}
 
 {{ if eq .chezmoi.os "darwin" -}}
-brew install hexyl \
+brew install \
+  hexyl \
   git-delta \
-  sd \
-  difftastic
+  sd
 {{ end -}}
 
 {{ if eq .chezmoi.os "darwin" -}}
@@ -57,14 +57,6 @@ if ! [ -x "$(command -v rg)" ]; then
   curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
   sudo dpkg -i ripgrep_13.0.0_amd64.deb
   rm ripgrep_13.0.0_amd64.deb
-fi
-
-# Install difftastic
-if ! [ -x "$(command -v difft)" ]; then
-  curl -L -o /tmp/difftastic.tgz https://github.com/Wilfred/difftastic/releases/download/0.38.0/difft-x86_64-unknown-linux-gnu.tar.gz
-  tar -xzvf /tmp/difftastic.tgz
-  sudo mv difft /usr/local/bin
-  sudo chmod +x /usr/local/bin/difft
 fi
 
 {{ end -}}
