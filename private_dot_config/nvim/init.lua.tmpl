@@ -36,8 +36,9 @@ nmap('<C-j>', '<C-w>j')
 nmap('<C-k>', '<C-w>k')
 nmap('<C-l>', '<C-w>l')
 nmap('<Leader>x', ':bd<cr>')
-nmap('<Leader>d', ':wq<cr>')
 nmap('<Leader>p', '$p<cr>') -- Paste to end of line
+nmap('<Leader>d', '"_d') -- Blackhole register
+nmap('<Leader>y', '"+y') -- Copy to system clipboard
 
 -- Search-replace in file
 -- nmap('<Leader>s', ':%s/\\<<C-r><C-w>\\>/') -- Getting invalid escape sequence
