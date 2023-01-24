@@ -103,6 +103,11 @@ alias zshu="vim ~/.zshrc"
 complete -C '/usr/bin/aws_completer' aws
 
 
+function vimrg () {
+  rg -l "$1" | xargs nvim
+
+}
+
 unalias gsw
 function gsw () {
   if [ -z "$1" ]
