@@ -113,11 +113,10 @@ augroup END
 -- Filetype settings
 vim.api.nvim_create_augroup("bufcheck", { clear = true })
 
--- FIXME: vim-go breaks this
 -- Set filetype for templates to their base filetype
 vim.cmd('au BufRead,BufNewFile *.lua.tmpl setfiletype lua')
 vim.cmd('au BufRead,BufNewFile *.sh.tmpl setfiletype bash')
-
+vim.cmd('au BufRead,BufNewFile *.yml setfiletype yaml.ansible')
 
 -- Remove trailing spaces in yaml
 vim.cmd([[

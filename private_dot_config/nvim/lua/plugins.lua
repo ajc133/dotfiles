@@ -73,7 +73,10 @@ return require('packer').startup(
 		use 'j-hui/fidget.nvim'
 
 		-- Golang
-		use 'fatih/vim-go'
+		use {
+			'crispgm/nvim-go',
+			requires = { { 'nvim-lua/plenary.nvim' } }
+		}
 
 		-- Comment things out
 		use 'tpope/vim-commentary'

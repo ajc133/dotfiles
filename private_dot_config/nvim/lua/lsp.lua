@@ -34,7 +34,7 @@ local lsp_flags = {
 	debounce_text_changes = 150,
 }
 
-require('lspconfig')['sumneko_lua'].setup {
+require('lspconfig')['lua_ls'].setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -62,6 +62,12 @@ require('lspconfig')['sumneko_lua'].setup {
 			},
 		},
 	},
+}
+
+require('lspconfig')['ansiblels'].setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
+	flags = lsp_flags,
 }
 
 require('lspconfig')['bashls'].setup {
