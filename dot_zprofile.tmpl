@@ -1,0 +1,4 @@
+export PATH="$PATH:$HOME/.cargo/bin:$HOME/bin:$HOME/.local/bin"
+{{ if eq .chezmoi.os "darwin" -}}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ end }}
