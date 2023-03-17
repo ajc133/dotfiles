@@ -1,4 +1,6 @@
-zmodload zsh/zprof
+# Uncomment to print startup time profiling
+# zmodload zsh/zprof
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/bin:/usr/local/go/bin:/usr/lib/cargo/bin:$HOME/.ssi/bin:$PATH
 export GOPATH=$HOME/workspace
@@ -39,6 +41,18 @@ plugins=(
     you-should-use
     zsh-autosuggestions
     zsh-syntax-highlighting
+)
+{{ if eq .chezmoi.os "darwin" }}
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+{{ end }}
+
+fpath=(
+    ~/.zsh 
+    $(brew --prefix)/share/zsh/site-functions
+    $fpath
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -91,9 +105,6 @@ alias vim="nvim"
 alias zsha="source ~/.zshrc"
 alias zshu="vim ~/.zshrc"
 
-complete -C '/usr/bin/aws_completer' aws
-
-
 function vimrg () {
   rg -l "$1" | xargs nvim
 
@@ -108,10 +119,6 @@ function gsw () {
     git switch "$1"
   fi
 }
-
-fpath=(~/.zsh $fpath)
-autoload -Uz compinit
-compinit -u
 
 # "less that"
 lt() {
@@ -132,3 +139,6 @@ eval "$(direnv hook zsh)"
 {{ if eq .chezmoi.os "darwin" }}
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 {{ end }}
+
+# Uncomment to print startup time profiling
+# zprof
