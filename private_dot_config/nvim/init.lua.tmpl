@@ -35,7 +35,8 @@ nmap('<C-h>', '<C-w>h')
 nmap('<C-j>', '<C-w>j')
 nmap('<C-k>', '<C-w>k')
 nmap('<C-l>', '<C-w>l')
-nmap('<Leader>x', ':bd<cr>')
+nmap('<Leader>w', ':write<cr>')
+nmap('<Leader>c', ':bdelete<cr>')
 nmap('<Leader>p', '$p<cr>') -- Paste to end of line
 nmap('<Leader>d', '"_d') -- Blackhole register
 nmap('<Leader>y', '"+y') -- Copy to system clipboard
@@ -336,4 +337,4 @@ nmap('<Leader>gmv', ':Gmove ') -- git mv <path>
 
 vim.cmd("let g:fugitive_gitlab_domains = {'ssh://git.2nd.io': 'https://git.2nd.io'}")
 
-nmap('<Leader>o', ':NvimTreeFindFileToggle<CR>') -- open file explorer
+nmap('<Leader>e', ':NvimTreeFindFileToggle<CR>') -- open file explorer
