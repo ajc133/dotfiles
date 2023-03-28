@@ -8,7 +8,7 @@ vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -112,6 +112,6 @@ require('lspconfig')['yamlls'].setup {
 	flags = lsp_flags,
 	filetypes = { "yaml", "yml" },
 	settings = {
-		validate = true;
+		validate = true,
 	}
 }
