@@ -61,6 +61,7 @@ return require('packer').startup(
 		use 'lifepillar/vim-gruvbox8'
 		use 'frankier/neovim-colors-solarized-truecolor-only'
 		use 'folke/tokyonight.nvim'
+		use 'Mofiqul/dracula.nvim'
 		use {
 			'marko-cerovac/material.nvim',
 			config = function() require('material').setup({ lualine_style = 'default' }) end,
