@@ -106,6 +106,12 @@ require('lspconfig')['rust_analyzer'].setup {
 	flags = lsp_flags,
 }
 
+require('lspconfig')['jsonls'].setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
+	flags = lsp_flags,
+}
+
 require('lspconfig')['yamlls'].setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
