@@ -1,2 +1,3 @@
+# Skips adding these files to $HOME
 Brewfile
 README.md

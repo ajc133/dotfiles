@@ -117,7 +117,7 @@ vim.api.nvim_create_augroup("bufcheck", { clear = true })
 -- Set filetype for templates to their base filetype
 vim.cmd('au BufRead,BufNewFile *.lua.tmpl setfiletype lua')
 vim.cmd('au BufRead,BufNewFile *.sh.tmpl setfiletype bash')
-vim.cmd('au BufRead,BufNewFile *.yml setfiletype yaml.ansible')
+vim.cmd('au BufRead,BufNewFile *.yml setfiletype yaml.ansible') -- FIXME
 
 -- Remove trailing spaces in yaml
 vim.cmd([[
@@ -156,6 +156,39 @@ vim.cmd('colorscheme {{ .nvim_colorscheme }}')
 -- Configure LSP
 require('lsp')
 require("mason").setup()
+require("mason-tool-installer").setup {
+
+  -- a list of all tools you want to ensure are installed upon
+  -- start; they should be the names Mason uses for each tool
+  ensure_installed = {
+    -- you can pin a tool to a particular version
+    -- { 'golangci-lint', version = 'v1.47.0' },
+    -- you can turn off/on auto_update per tool
+    -- { 'bash-language-server', auto_update = true },
+    'ansible-language-server',
+    'json-lsp',
+    'lua-language-server',
+    'pyright',
+    'rust-analyzer',
+    'shellcheck',
+    'yaml-language-server',
+  },
+
+  -- if set to true this will check each tool for updates. If updates
+  -- are available the tool will be updated. This setting does not
+  -- affect :MasonToolsUpdate or :MasonToolsInstall.
+  -- Default: false
+  auto_update = true,
+
+  -- automatically install / update on startup. If set to false nothing
+  -- will happen on startup. You can use :MasonToolsInstall or
+  -- :MasonToolsUpdate to install tools and check for updates.
+  -- Default: true
+  run_on_start = true,
+  start_delay = 3000, -- 3 second delay
+  debounce_hours = 5, -- at least 5 hours between attempts to install/update
+}
+
 vim.cmd('let g:go_fmt_command = "gofmt"')
 
 -- Telescope fuzzy finder

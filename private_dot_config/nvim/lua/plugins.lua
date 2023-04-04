@@ -70,7 +70,11 @@ return require('packer').startup(
 
 		-- LSP
 		use 'neovim/nvim-lspconfig'
-		use 'williamboman/mason.nvim'
+		use {
+		    "williamboman/mason.nvim",
+		    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+		}
+		use 'WhoIsSethDaniel/mason-tool-installer.nvim'
 		use 'j-hui/fidget.nvim'
 
 		-- Golang
