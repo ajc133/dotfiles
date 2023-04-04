@@ -112,15 +112,6 @@ augroup dotfiles
 augroup END
 ]])
 
--- Filetype settings
-vim.api.nvim_create_augroup("bufcheck", { clear = true })
-
--- Set filetype for templates to their base filetype
-vim.cmd("au BufRead,BufNewFile *.lua.tmpl setfiletype lua")
-vim.cmd("au BufRead,BufNewFile *.sh.tmpl setfiletype bash")
-vim.cmd("au BufRead,BufNewFile *.yml setfiletype yaml.ansible") -- FIXME
-vim.cmd('au FileType markdown setlocal spell')
-
 -- Remove trailing spaces in yaml
 vim.cmd([[
 augroup dotfiles
