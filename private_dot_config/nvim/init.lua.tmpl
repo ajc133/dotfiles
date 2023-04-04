@@ -44,7 +44,6 @@ nmap('<Leader>y', '"+y') -- Copy to system clipboard
 -- Search-replace in file
 -- nmap('<Leader>s', ':%s/\\<<C-r><C-w>\\>/') -- Getting invalid escape sequence
 vim.cmd(':nnoremap <Leader>s :%s/<C-r><C-w>/') -- Matches word
-vim.cmd(':nnoremap <Leader>a :%s/<C-r><C-w>/') -- Matches WORD. Might be a pain
 
 
 -- Insert mode mappings
@@ -61,6 +60,7 @@ imap('<expr><TAB>', 'pumvisible() ? "\\<C-n>" : "\\<TAB>"')
 
 vmap('<', '<gv')
 vmap('>', '>gv')
+vmap('<Leader>j', "!jq '.' <CR>")
 
 --------------
 -- Settings --
