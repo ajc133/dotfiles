@@ -21,6 +21,7 @@ return require("packer").startup(
         })
       end
     }
+    use "ethanholz/nvim-lastplace"
 
     -- File tree
     use {
