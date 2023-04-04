@@ -118,6 +118,7 @@ vim.api.nvim_create_augroup("bufcheck", { clear = true })
 vim.cmd('au BufRead,BufNewFile *.lua.tmpl setfiletype lua')
 vim.cmd('au BufRead,BufNewFile *.sh.tmpl setfiletype bash')
 vim.cmd('au BufRead,BufNewFile *.yml setfiletype yaml.ansible') -- FIXME
+vim.cmd('au FileType markdown setlocal spell')
 
 -- Remove trailing spaces in yaml
 vim.cmd([[

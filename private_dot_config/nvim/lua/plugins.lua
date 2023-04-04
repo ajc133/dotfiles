@@ -76,6 +76,7 @@ return require('packer').startup(
 		}
 		use 'WhoIsSethDaniel/mason-tool-installer.nvim'
 		use 'j-hui/fidget.nvim'
+		use "lukas-reineke/lsp-format.nvim"
 
 		-- Golang
 		use {

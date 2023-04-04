@@ -8,7 +8,22 @@ vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local on_attach = function(_, bufnr)
+require("lsp-format").setup {
+	typescript = {
+		tab_width = function()
+			return vim.opt.shiftwidth:get()
+		end,
+	},
+	lua = {
+		tab_width = function()
+			return vim.opt.shiftwidth:get()
+		end,
+	},
+	yaml = { tab_width = 2 },
+}
+
+local on_attach = function(client, bufnr)
+	require("lsp-format").on_attach(client)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
