@@ -10,69 +10,69 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Convenience
 local function map(mode, shortcut, command)
-	vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
+  vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
 end
 
 local function nmap(shortcut, command)
-	map('n', shortcut, command)
+  map("n", shortcut, command)
 end
 
 local function imap(shortcut, command)
-	map('i', shortcut, command)
+  map("i", shortcut, command)
 end
 
 local function vmap(shortcut, command)
-	map('v', shortcut, command)
+  map("v", shortcut, command)
 end
 
 -- Normal mode mappings
 -- TAB in normal mode will move to text buffer
-nmap('<TAB>', ':bnext<CR>')
+nmap("<TAB>", ":bnext<CR>")
 -- SHIFT-TAB will go back
-nmap('<S-TAB>', ':bprevious<CR>')
+nmap("<S-TAB>", ":bprevious<CR>")
 -- Better window navigation (ctrl + vim-direction)
-nmap('<C-h>', '<C-w>h')
-nmap('<C-j>', '<C-w>j')
-nmap('<C-k>', '<C-w>k')
-nmap('<C-l>', '<C-w>l')
-nmap('<Leader>w', ':write<cr>')
-nmap('<Leader>x', ':bdelete<cr>')
-nmap('<Leader>p', '$p<cr>') -- Paste to end of line
-nmap('<Leader>d', '"_d') -- Blackhole register
-nmap('<Leader>y', '"+y') -- Copy to system clipboard
+nmap("<C-h>", "<C-w>h")
+nmap("<C-j>", "<C-w>j")
+nmap("<C-k>", "<C-w>k")
+nmap("<C-l>", "<C-w>l")
+nmap("<Leader>w", ":write<cr>")
+nmap("<Leader>x", ":bdelete<cr>")
+nmap("<Leader>p", "$p<cr>") -- Paste to end of line
+nmap('<Leader>d', '"_d')    -- Blackhole register
+nmap('<Leader>y', '"+y')    -- Copy to system clipboard
 
 -- Search-replace in file
--- nmap('<Leader>s', ':%s/\\<<C-r><C-w>\\>/') -- Getting invalid escape sequence
-vim.cmd(':nnoremap <Leader>s :%s/<C-r><C-w>/') -- Matches word
+-- nmap("<Leader>s", ":%s/\\<<C-r><C-w>\\>/") -- Getting invalid escape sequence
+vim.cmd(":nnoremap <Leader>s :%s/<C-r><C-w>/") -- Matches word
 
 
 -- Insert mode mappings
 
 -- <TAB>: completion.
-imap('<expr><TAB>', 'pumvisible() ? "\\<C-n>" : "\\<TAB>"')
+imap("<expr><TAB>", 'pumvisible() ? "\\<C-n>" : "\\<TAB>"')
 -- Better nav for omnicomplete
-imap('<expr><c-j>', '("\\<C-n>")')
-imap('<expr><c-k>', '("\\<C-p>")')
+imap("<expr><c-j>", '("\\<C-n>")')
+imap("<expr><c-k>", '("\\<C-p>")')
 -- <TAB>: completion
 imap('<expr><TAB>', 'pumvisible() ? "\\<C-n>" : "\\<TAB>"')
 
 -- Visual mode mappings
 
-vmap('<', '<gv')
-vmap('>', '>gv')
-vmap('<Leader>j', "!jq '.' <CR>")
+vmap("<", "<gv")
+vmap(">", ">gv")
+vmap("<Leader>j", "!jq '.' <CR>")
 
 --------------
 -- Settings --
 --------------
 
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
-vim.cmd('set hidden')
-vim.opt.mouse = 'a'
+vim.opt.background = "dark"
+vim.cmd("set hidden")
+vim.opt.mouse = "a"
 
 vim.opt.cmdheight = 2
-vim.opt.completeopt = { 'menuone', 'noselect' }
+vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.number = true
 vim.opt.updatetime = 50
 vim.opt.splitbelow = true
@@ -85,9 +85,10 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.autoindent = true
+vim.cmd("set expandtab")
 
 vim.opt.list = true
-vim.opt.listchars = { tab = '> ', trail = '·', nbsp = '+' }
+vim.opt.listchars = { tab = "> ", trail = "·", nbsp = "+" }
 
 ------------------
 -- Autocommands --
@@ -115,9 +116,9 @@ augroup END
 vim.api.nvim_create_augroup("bufcheck", { clear = true })
 
 -- Set filetype for templates to their base filetype
-vim.cmd('au BufRead,BufNewFile *.lua.tmpl setfiletype lua')
-vim.cmd('au BufRead,BufNewFile *.sh.tmpl setfiletype bash')
-vim.cmd('au BufRead,BufNewFile *.yml setfiletype yaml.ansible') -- FIXME
+vim.cmd("au BufRead,BufNewFile *.lua.tmpl setfiletype lua")
+vim.cmd("au BufRead,BufNewFile *.sh.tmpl setfiletype bash")
+vim.cmd("au BufRead,BufNewFile *.yml setfiletype yaml.ansible") -- FIXME
 vim.cmd('au FileType markdown setlocal spell')
 
 -- Remove trailing spaces in yaml
@@ -130,8 +131,8 @@ augroup END
 
 -- Highlight yank
 vim.api.nvim_create_autocmd(
-	{ "TextYankPost" },
-	{ pattern = { "*" }, command = "lua require'vim.highlight'.on_yank()" }
+  { "TextYankPost" },
+  { pattern = { "*" }, command = "lua require'vim.highlight'.on_yank()" }
 )
 
 -- Highlight all search matches only while typing
@@ -148,14 +149,16 @@ augroup END
 -------------
 
 -- Installs plugins
-require('plugins')
+require("plugins")
+
+vim.cmd('cabbrev wq execute "Format sync" <bar> wq')
 
 -- colorschemin'
 vim.g.material_style = "darker" -- when colorscheme == material
-vim.cmd('colorscheme {{ .nvim_colorscheme }}')
+vim.cmd("colorscheme {{ .nvim_colorscheme }}")
 
 -- Configure LSP
-require('lsp')
+require("lsp")
 require("mason").setup()
 require("mason-tool-installer").setup {
 
@@ -163,16 +166,16 @@ require("mason-tool-installer").setup {
   -- start; they should be the names Mason uses for each tool
   ensure_installed = {
     -- you can pin a tool to a particular version
-    -- { 'golangci-lint', version = 'v1.47.0' },
+    -- { "golangci-lint", version = "v1.47.0" },
     -- you can turn off/on auto_update per tool
-    -- { 'bash-language-server', auto_update = true },
-    'ansible-language-server',
-    'json-lsp',
-    'lua-language-server',
-    'pyright',
-    'rust-analyzer',
-    'shellcheck',
-    'yaml-language-server',
+    -- { "bash-language-server", auto_update = true },
+    "ansible-language-server",
+    "json-lsp",
+    "lua-language-server",
+    "pyright",
+    "rust-analyzer",
+    "shellcheck",
+    "yaml-language-server",
   },
 
   -- if set to true this will check each tool for updates. If updates
@@ -193,161 +196,161 @@ require("mason-tool-installer").setup {
 vim.cmd('let g:go_fmt_command = "gofmt"')
 
 -- Telescope fuzzy finder
-require('telescope').setup {
-	defaults = {
-		-- Default configuration for telescope goes here:
-		-- config_key = value,
-		mappings = {
-			i = {
-				-- map actions.which_key to <C-h> (default: <C-/>)
-				-- actions.which_key shows the mappings for your picker,
-				-- e.g. git_{create, delete, ...}_branch for the git_branches picker
-				["<C-h>"] = "which_key"
-			}
-		}
-	},
-	colorscheme = 'auto',
+require("telescope").setup {
+  defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-h>"] = "which_key"
+      }
+    }
+  },
+  colorscheme = "auto",
 }
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
-require('nvim-treesitter.configs').setup {
-	-- Add languages to be installed here that you want installed for treesitter
-	ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'javascript', 'typescript', 'help', 'vim' },
+require("nvim-treesitter.configs").setup {
+  -- Add languages to be installed here that you want installed for treesitter
+  ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "javascript", "typescript", "help", "vim" },
 
-	highlight = { enable = true },
-	indent = { enable = true, disable = { 'python' } },
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = '<c-space>',
-			node_incremental = '<c-space>',
-			scope_incremental = '<c-s>',
-			node_decremental = '<c-backspace>',
-		},
-	},
-	textobjects = {
-		select = {
-			enable = true,
-			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-			keymaps = {
-				-- You can use the capture groups defined in textobjects.scm
-				['aa'] = '@parameter.outer',
-				['ia'] = '@parameter.inner',
-				['af'] = '@function.outer',
-				['if'] = '@function.inner',
-				['ac'] = '@class.outer',
-				['ic'] = '@class.inner',
-			},
-		},
-		move = {
-			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				[']m'] = '@function.outer',
-				[']]'] = '@class.outer',
-			},
-			goto_next_end = {
-				[']M'] = '@function.outer',
-				[']['] = '@class.outer',
-			},
-			goto_previous_start = {
-				['[m'] = '@function.outer',
-				['[['] = '@class.outer',
-			},
-			goto_previous_end = {
-				['[M'] = '@function.outer',
-				['[]'] = '@class.outer',
-			},
-		},
-		swap = {
-			enable = true,
-			swap_next = {
-				['<leader>a'] = '@parameter.inner',
-			},
-			swap_previous = {
-				['<leader>A'] = '@parameter.inner',
-			},
-		},
-	},
+  highlight = { enable = true },
+  indent = { enable = true, disable = { "python" } },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<c-space>",
+      node_incremental = "<c-space>",
+      scope_incremental = "<c-s>",
+      node_decremental = "<c-backspace>",
+    },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>a"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>A"] = "@parameter.inner",
+      },
+    },
+  },
 }
 
 -- File tree
 require("nvim-tree").setup({
-	sort_by = "case_sensitive",
-	view = {
-		adaptive_size = true,
-		mappings = {
-			list = {
-				{ key = "u", action = "dir_up" },
-			},
-		},
-	},
-	renderer = {
-		group_empty = true,
-	},
-	filters = {
-		dotfiles = true,
-	},
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
 })
 
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
-require('gitsigns').setup {
-	signs = {
-		add = { text = '+' },
-		change = { text = '~' },
-		delete = { text = '_' },
-		topdelete = { text = '‾' },
-		changedelete = { text = '~' },
-	},
+require("gitsigns").setup {
+  signs = {
+    add = { text = "+" },
+    change = { text = "~" },
+    delete = { text = "_" },
+    topdelete = { text = "‾" },
+    changedelete = { text = "~" },
+  },
 }
 
 -- Turn on lsp status information
-require('fidget').setup()
+require("fidget").setup()
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+local cmp = require "cmp"
+local luasnip = require "luasnip"
 
 cmp.setup {
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
-	mapping = cmp.mapping.preset.insert {
-		['<C-Space>'] = cmp.mapping.confirm(),
-		['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<CR>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		},
-		['<Tab>'] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { 'i', 's' }),
-		['<S-Tab>'] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { 'i', 's' }),
-	},
-	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-	},
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert {
+    ["<C-Space>"] = cmp.mapping.confirm(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<CR>"] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+  },
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+  },
 }
 
 ---------------------
@@ -355,20 +358,20 @@ cmp.setup {
 ---------------------
 
 -- Telescope
-local builtin = require('telescope.builtin')
-nmap('<Leader>fb', builtin.buffers)
-nmap('<Leader>ff', builtin.find_files)
-nmap('<Leader>fg', builtin.live_grep)
-nmap('<Leader>fh', builtin.help_tags)
-nmap('<Leader>fw', builtin.grep_string)
+local builtin = require("telescope.builtin")
+nmap("<Leader>fb", builtin.buffers)
+nmap("<Leader>ff", builtin.find_files)
+nmap("<Leader>fg", builtin.live_grep)
+nmap("<Leader>fh", builtin.help_tags)
+nmap("<Leader>fw", builtin.grep_string)
 
 -- Git - vim-fugitive
-nmap('<Leader>gb', ':Git blame<cr>') -- git blame %
-nmap('<Leader>gw', ':Gwrite<cr>') -- git add %
-nmap('<Leader>gc', ':Git commit<cr>') -- git commit
-nmap('<Leader>grm', ':Gremove<cr>') -- git rm %
-nmap('<Leader>gmv', ':Gmove ') -- git mv <path>
+nmap("<Leader>gb", ":Git blame<cr>")  -- git blame %
+nmap("<Leader>gw", ":Gwrite<cr>")     -- git add %
+nmap("<Leader>gc", ":Git commit<cr>") -- git commit
+nmap("<Leader>grm", ":Gremove<cr>")   -- git rm %
+nmap('<Leader>gmv', ':Gmove ')        -- git mv <path>
 
 vim.cmd("let g:fugitive_gitlab_domains = {'ssh://git.2nd.io': 'https://git.2nd.io'}")
 
-nmap('<Leader>o', ':NvimTreeFindFileToggle<CR>') -- open file explorer
+nmap("<Leader>o", ":NvimTreeFindFileToggle<CR>") -- open file explorer
