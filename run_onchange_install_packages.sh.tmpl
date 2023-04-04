@@ -1,8 +1,8 @@
 #!/bin/bash
 {{ if not (eq .chezmoi.os "darwin") -}}
 {{ if eq .chezmoi.osRelease.id "manjaro" -}}
-sudo pacman -Syu
-sudo pacman --noconfirm -S \
+sudo -n pacman -Syy
+sudo -n pacman --noconfirm -S \
     aws-cli-v2 \
     bind-tools \
     fd \
@@ -12,8 +12,8 @@ sudo pacman --noconfirm -S \
     ripgrep \
     terraform \
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
-sudo apt-get update -y
-sudo apt-get install -y \
+sudo -n apt-get update -y
+sudo -n apt-get install -y \
     fd-find \
     gnome-tweaks \
     hexyl \
@@ -29,6 +29,7 @@ sudo apt-get install -y \
     nmap \
     tmux \
     unzip \
+    xclip \
     zsh
 {{ end -}}
 
@@ -46,14 +47,14 @@ fi
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
 # Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
 if [ ! -f "/usr/bin/nvim" ]; then
-	sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb -O /tmp/nvim.deb && \
-		sudo apt install /tmp/nvim.deb
+	sudo -n wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb -O /tmp/nvim.deb && \
+		sudo -n apt install /tmp/nvim.deb
 fi
 
 # Install ripgrep
 if ! [ -x "$(command -v rg)" ]; then
   curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-  sudo dpkg -i ripgrep_13.0.0_amd64.deb
+  sudo -n dpkg -i ripgrep_13.0.0_amd64.deb
   rm ripgrep_13.0.0_amd64.deb
 fi
 
