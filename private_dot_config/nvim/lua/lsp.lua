@@ -133,6 +133,10 @@ require("lspconfig")["yamlls"].setup {
   flags = lsp_flags,
   filetypes = { "yaml", "yml" },
   settings = {
+    -- https://www.npmjs.com/package/yaml-language-server#language-server-settings
     validate = true,
+    yaml = {
+      keyOrdering = false,
+    }
   }
 }
