@@ -6,9 +6,13 @@ sudo -n pacman --noconfirm -S \
     aws-cli-v2 \
     bind-tools \
     fd \
+    fuse-overlayfs \
     hexyl \
     nodejs \
     neovim \
+    podman \
+    podman-compose \
+    podman-dnsname \
     ripgrep \
     terraform \
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
