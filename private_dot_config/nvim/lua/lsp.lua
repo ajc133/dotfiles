@@ -137,6 +137,7 @@ require("lspconfig")["yamlls"].setup {
     validate = true,
     yaml = {
       keyOrdering = false,
+      format = "enable",
     }
   }
 }
