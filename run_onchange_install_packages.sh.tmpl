@@ -64,9 +64,16 @@ fi
 
 {{ end -}}
 
+# Neovim packer
 packpath="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 if [ ! -d "$packpath" ]; then
     git clone --depth 1 https://github.com/wbthomason/packer.nvim "$packpath"
+fi
+
+# Astronvim
+astronvim_path="$HOME/.config/astronvim"
+if [ ! -d "$astronvim_path" ]; then
+    git clone --depth 1 https://github.com/AstroNvim/AstroNvim $astronvim_path
 fi
 
 # clone oh-my-zsh
