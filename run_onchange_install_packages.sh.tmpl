@@ -10,11 +10,13 @@ sudo -n pacman --noconfirm -S \
     hexyl \
     httpie \
     nodejs \
+    npm \
     neovim \
     podman \
     podman-compose \
     podman-dnsname \
     ripgrep \
+    rustup \
     terraform \
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
 sudo -n apt-get update -y
