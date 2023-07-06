@@ -1,5 +1,6 @@
 # Uncomment to print startup time profiling
 # zmodload zsh/zprof
+autoload zmv
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/bin:/usr/local/go/bin:/usr/lib/cargo/bin:$HOME/.ssi/bin:$PATH
@@ -97,7 +98,12 @@ alias sau="sudo apt update"
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
 alias sed="gsed"
+alias tstart="tmuxinator start work"
+alias tstop="tmuxinator stop work"
 {{ end }}
+alias mb="make build"
+alias mbr="make build && make run"
+alias mr="make run"
 alias sl="ls"
 alias tf="terraform"
 alias vim="nvim"
