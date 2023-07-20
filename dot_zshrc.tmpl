@@ -5,16 +5,15 @@ autoload zmv zcalc
 # Start ssh-agent
 if [ -z "$SSH_AUTH_SOCK" ]; then
    # Check for a currently running instance of the agent
-   RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
-   if [ "$RUNNING_AGENT" = "0" ]; then
+   if pgrep ssh-agent; then
         # Launch a new instance of the agent
-        ssh-agent -s &> .ssh/ssh-agent
+        ssh-agent -s &> $HOME/.ssh/ssh-agent
    fi
-   eval `cat .ssh/ssh-agent`
+   eval `cat $HOME/.ssh/ssh-agent`
 fi
 
 # Need to run this to make keys available for use on the Remote Docker machine
-ssh-add
+ssh-add &>/dev/null
 
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/bin:/usr/local/go/bin:/usr/lib/cargo/bin:$HOME/.ssi/bin:$PATH
 
