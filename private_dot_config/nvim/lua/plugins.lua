@@ -75,7 +75,15 @@ return require("packer").startup(
       run = ":MasonUpdate" -- :MasonUpdate updates registry contents
     }
     use "WhoIsSethDaniel/mason-tool-installer.nvim"
-    use "j-hui/fidget.nvim"
+    use {
+      'j-hui/fidget.nvim',
+      tag = 'legacy',
+      config = function()
+        require("fidget").setup {
+          -- options
+        }
+      end,
+    }
     use "lukas-reineke/lsp-format.nvim"
 
     -- Golang
