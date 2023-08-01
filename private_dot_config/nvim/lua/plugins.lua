@@ -13,6 +13,9 @@ return require("packer").startup(
     use {
       "nvim-lualine/lualine.nvim",
       requires = { "nvim-tree/nvim-web-devicons" },
+      options = {
+        theme = 'onedark'
+      },
       config = function()
         require("lualine").setup({
           sections = {
@@ -35,7 +38,7 @@ return require("packer").startup(
     -- Status line
     use {
       "akinsho/bufferline.nvim",
-      tag = "v3.*",
+      tag = "v4.*",
       requires = "nvim-tree/nvim-web-devicons",
       config = function() require("bufferline").setup {} end,
     }
@@ -104,7 +107,7 @@ return require("packer").startup(
 
     -- Telescope
     use {
-      "nvim-telescope/telescope.nvim", tag = "0.1.0",
+      "nvim-telescope/telescope.nvim", tag = "0.1.*",
       requires = { { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" } }
     }
 
