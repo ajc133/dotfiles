@@ -9,3 +9,5 @@ If this is a new machine, install Chezmoi and apply the dotfiles with
 sudo apt install curl git
 sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply ajc133
 ```
+
+<!-- Current preferred colorscheme is onedark -->

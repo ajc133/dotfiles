@@ -62,6 +62,7 @@ return require("packer").startup(
     use "frankier/neovim-colors-solarized-truecolor-only"
     use "folke/tokyonight.nvim"
     use "Mofiqul/dracula.nvim"
+    use 'navarasu/onedark.nvim'
     use {
       "marko-cerovac/material.nvim",
       config = function() require("material").setup({ lualine_style = "default" }) end,

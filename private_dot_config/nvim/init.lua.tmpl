@@ -145,8 +145,8 @@ require("plugins")
 vim.cmd('cabbrev wq execute "Format sync" <bar> wq')
 
 -- colorschemin'
-vim.g.material_style = "darker" -- when colorscheme == material
-vim.cmd("colorscheme {{ .nvim_colorscheme }}")
+-- vim.g.material_style = "darker" -- when colorscheme == material
+require('{{ .nvim_colorscheme }}').load()
 
 -- Configure LSP
 require("lsp")
