@@ -26,41 +26,19 @@ local function vmap(shortcut, command)
 end
 
 -- Normal mode mappings
--- TAB in normal mode will move to text buffer
-nmap("<TAB>", ":bnext<CR>")
--- SHIFT-TAB will go back
-nmap("<S-TAB>", ":bprevious<CR>")
--- Better window navigation (ctrl + vim-direction)
-nmap("<C-h>", "<C-w>h")
-nmap("<C-j>", "<C-w>j")
-nmap("<C-k>", "<C-w>k")
-nmap("<C-l>", "<C-w>l")
-nmap("<Leader>w", ":write<cr>")
-nmap("<Leader>x", ":bdelete<cr>")
-nmap("<Leader>p", "$p<cr>") -- Paste to end of line
-nmap('<Leader>d', '"_d')    -- Blackhole register
-nmap('<Leader>y', '"+y')    -- Copy to system clipboard
-
--- Search-replace in file
--- nmap("<Leader>s", ":%s/\\<<C-r><C-w>\\>/") -- Getting invalid escape sequence
-vim.cmd(":nnoremap <Leader>s :%s/<C-r><C-w>/") -- Matches word
-
-
--- Insert mode mappings
-
--- <TAB>: completion.
-imap("<expr><TAB>", 'pumvisible() ? "\\<C-n>" : "\\<TAB>"')
--- Better nav for omnicomplete
-imap("<expr><c-j>", '("\\<C-n>")')
-imap("<expr><c-k>", '("\\<C-p>")')
--- <TAB>: completion
-imap('<expr><TAB>', 'pumvisible() ? "\\<C-n>" : "\\<TAB>"')
+nmap("<TAB>", ":bnext<CR>")                -- TAB to next buffer
+nmap("<S-TAB>", ":bprevious<CR>")          -- Shift + TAB to prev buffer
+nmap("<C-s>", ":write<cr>")                -- Save
+nmap("<Leader>d", '"_d')                   -- Blackhole register
+nmap("<Leader>p", "$p<cr>")                -- Paste to end of line
+nmap("<Leader>s", ":%s/\\<<C-r><C-w>\\>/") -- Search-replace word in file
+nmap("<Leader>x", ":bdelete<cr>")          -- Close buffer
+nmap("<Leader>y", '"+y')                   -- Copy to system clipboard
 
 -- Visual mode mappings
-
-vmap("<", "<gv")
-vmap(">", ">gv")
-vmap("<Leader>j", "!jq '.' <CR>")
+vmap("<", "<gv")                  -- Keep visual selection when indenting forward
+vmap(">", ">gv")                  -- Keep visual selection when indenting backward
+vmap("<Leader>j", "!jq '.' <CR>") -- Format JSON under visual selection
 
 --------------
 -- Settings --
@@ -71,13 +49,13 @@ vim.opt.background = "dark"
 vim.cmd("set hidden")
 vim.opt.mouse = "a"
 
-vim.opt.cmdheight = 2
+vim.opt.cmdheight = 1
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.number = true
 vim.opt.updatetime = 50
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.scrolloff = 12
+vim.opt.scrolloff = 8
 
 -- Search options
 vim.opt.hlsearch = false
@@ -104,7 +82,7 @@ augroup END
 
 -- Dotfile management
 -- Run chezmoi apply whenever you save a dotfile
--- Auto source when writing to init.vim alternatively you can run :source $MYVIMRC
+-- Auto source when writing to init.lua alternatively you can run :source $MYVIMRC
 vim.cmd([[
 augroup dotfiles
   au! BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply
