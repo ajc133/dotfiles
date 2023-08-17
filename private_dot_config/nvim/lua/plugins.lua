@@ -99,20 +99,28 @@ return require("packer").startup(
     -- Comment things out
     use "tpope/vim-commentary"
 
-    -- Completion
-    use { -- Autocompletion
-      "hrsh7th/nvim-cmp",
-      requires = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
+    use {
+      -- Autocompletion
+      'hrsh7th/nvim-cmp',
+      requires = {
+        -- Snippet Engine & its associated nvim-cmp source
+        'L3MON4D3/LuaSnip',
+        'saadparwaiz1/cmp_luasnip',
+
+        -- Adds LSP completion capabilities
+        'hrsh7th/cmp-nvim-lsp',
+
+        -- Adds a number of user-friendly snippets
+        'rafamadriz/friendly-snippets',
+      },
     }
 
+    -- Useful plugin to show you pending keybinds.
+    use "folke/which-key.nvim"
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim", tag = "0.1.*",
       requires = { { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" } }
     }
-
-    -- FIXME: Snippets
-    -- use "SirVer/ultisnips"
-    -- use "quangnguyen30192/cmp-nvim-ultisnips"
   end
 )
