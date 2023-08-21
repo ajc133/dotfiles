@@ -142,6 +142,11 @@ alias anvim='NVIM_APPNAME="astronvim" nvim'
 alias szsh="source ~/.zshrc"
 alias ezsh="vim ~/.zshrc"
 
+lastdl() {
+    newest_file=$(ls -t $HOME/Downloads/ | head -n 1)
+    echo "'${newest_file}'"
+}
+
 # Open files that contain a string
 function vimrg () {
   rg -l "$1" | xargs nvim
