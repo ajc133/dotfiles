@@ -14,7 +14,7 @@ return require("packer").startup(
       "nvim-lualine/lualine.nvim",
       requires = { "nvim-tree/nvim-web-devicons" },
       options = {
-        theme = 'onedark'
+        theme = "onedark"
       },
       config = function()
         require("lualine").setup({
@@ -65,7 +65,7 @@ return require("packer").startup(
     use "frankier/neovim-colors-solarized-truecolor-only"
     use "folke/tokyonight.nvim"
     use "Mofiqul/dracula.nvim"
-    use 'navarasu/onedark.nvim'
+    use "navarasu/onedark.nvim"
     use {
       "marko-cerovac/material.nvim",
       config = function() require("material").setup({ lualine_style = "default" }) end,
@@ -80,8 +80,8 @@ return require("packer").startup(
     }
     use "WhoIsSethDaniel/mason-tool-installer.nvim"
     use {
-      'j-hui/fidget.nvim',
-      tag = 'legacy',
+      "j-hui/fidget.nvim",
+      tag = "legacy",
       config = function()
         require("fidget").setup {
           -- options
@@ -101,22 +101,34 @@ return require("packer").startup(
 
     use {
       -- Autocompletion
-      'hrsh7th/nvim-cmp',
+      "hrsh7th/nvim-cmp",
       requires = {
         -- Snippet Engine & its associated nvim-cmp source
-        'L3MON4D3/LuaSnip',
-        'saadparwaiz1/cmp_luasnip',
+        "L3MON4D3/LuaSnip",
+        "saadparwaiz1/cmp_luasnip",
 
         -- Adds LSP completion capabilities
-        'hrsh7th/cmp-nvim-lsp',
+        "hrsh7th/cmp-nvim-lsp",
 
         -- Adds a number of user-friendly snippets
-        'rafamadriz/friendly-snippets',
+        "rafamadriz/friendly-snippets",
       },
     }
 
-    -- Useful plugin to show you pending keybinds.
-    use "folke/which-key.nvim"
+    -- TODO: How to use?
+    -- use "folke/which-key.nvim"
+
+    -- Surround plugin
+    use({
+      "kylechui/nvim-surround",
+      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+      config = function()
+        require("nvim-surround").setup({
+          -- Configuration here, or leave empty to use defaults
+        })
+      end
+    })
+
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim", tag = "0.1.*",

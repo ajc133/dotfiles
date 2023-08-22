@@ -346,7 +346,7 @@ nmap("<Leader>o", ":NvimTreeFindFileToggle<CR>") -- open file explorer
 
 -- colorschemin' last because I mess it up a lot when I switch
 -- vim.g.material_style = "darker" -- when colorscheme == material
-local colorscheme = '{{ .nvim_colorscheme }}'
+local colorscheme = "{{ .nvim_colorscheme }}"
 local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not ok then
   vim.notify("colorscheme " .. colorscheme .. " not found!")
