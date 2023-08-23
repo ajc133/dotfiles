@@ -142,10 +142,16 @@ alias anvim='NVIM_APPNAME="astronvim" nvim'
 alias szsh="source ~/.zshrc"
 alias ezsh="vim ~/.zshrc"
 
-# TODO: Don't parse ls https://mywiki.wooledge.org/ParsingLs
 lastdl() {
-    newest_file=$(ls -ldt $HOME/Downloads/* | head -n 1 | awk '{print $NF}')
-    echo "'${newest_file}'"
+    LS_COMMAND='ls'
+
+    # Use gls (gnu-ls) on Mac, since it has the quoting-style arg
+    if command -v gls &>/dev/null
+    then
+        LS_COMMAND='gls'
+    fi
+
+    $LS_COMMAND -l --quoting-style=shell-always --directory --sort=time $HOME/Downloads/* | head -n 1 | awk '{print $NF}'
 }
 
 # Open files that contain a string
