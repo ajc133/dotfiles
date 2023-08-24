@@ -165,7 +165,7 @@ unalias gsw
 function gsw () {
   if [ -z "$1" ]
   then
-    git switch $(git branch --all | fzf | tr -d '[:space:]') 
+    git switch $(git branch --sort=-committerdate | fzf | tr -d '[:space:]') 
   else
     git switch "$1"
   fi
