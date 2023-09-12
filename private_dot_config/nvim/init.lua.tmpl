@@ -25,6 +25,10 @@ local function vmap(shortcut, command)
   map("v", shortcut, command)
 end
 
+local function tmap(shortcut, command)
+  map("t", shortcut, command)
+end
+
 -- Normal mode mappings
 nmap("<TAB>", ":bnext<CR>")                -- TAB to next buffer
 nmap("<S-TAB>", ":bprevious<CR>")          -- Shift + TAB to prev buffer
@@ -40,6 +44,8 @@ vmap("<", "<gv")                  -- Keep visual selection when indenting forwar
 vmap(">", ">gv")                  -- Keep visual selection when indenting backward
 vmap("<Leader>j", "!jq '.' <CR>") -- Format JSON under visual selection
 
+-- Terminal mode mappings
+tmap("<Esc>", "<C-\\><C-n>")
 --------------
 -- Settings --
 --------------
