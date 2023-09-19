@@ -3,6 +3,7 @@
 {{ if eq .chezmoi.osRelease.id "manjaro" -}}
 sudo -n pacman -Syy
 sudo -n pacman --noconfirm -S \
+    aardvark-dns \
     aws-cli-v2 \
     bind-tools \
     fd \
@@ -30,7 +31,9 @@ sudo -n apt-get install -y \
     git \
     git-delta \
     httpie \
+    hugo \
     iperf \
+    jless \
     jq \
     keychain \
     nmap \
