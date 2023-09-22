@@ -90,12 +90,6 @@ return require("packer").startup(
     }
     use "lukas-reineke/lsp-format.nvim"
 
-    -- Golang
-    use {
-      "crispgm/nvim-go",
-      requires = { { "nvim-lua/plenary.nvim" } }
-    }
-
     -- Comment things out
     use "tpope/vim-commentary"
 
@@ -118,16 +112,17 @@ return require("packer").startup(
     -- TODO: How to use?
     -- use "folke/which-key.nvim"
 
-    -- Surround plugin
-    use({
-      "kylechui/nvim-surround",
-      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-      config = function()
-        require("nvim-surround").setup({
-          -- Configuration here, or leave empty to use defaults
-        })
-      end
-    })
+    -- FIXME
+    -- -- Surround plugin
+    -- use({
+    --   "kylechui/nvim-surround",
+    --   tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    --   config = function()
+    --     require("nvim-surround").setup({
+    --       -- Configuration here, or leave empty to use defaults
+    --     })
+    --   end
+    -- })
 
     -- Telescope
     use {
