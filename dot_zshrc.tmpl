@@ -21,6 +21,7 @@ export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_TMUX_AUTOSTART="false"
 export ZSH_TMUX_UNICODE="true"
+export LC_ALL="C.UTF-8"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # and https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
@@ -114,7 +115,7 @@ alias ch="chezmoi"
 alias cht="~/bin/cht.sh"
 alias chx="chmod +x"
 alias digs="dig +noall +answer"
-alias dps='docker ps --format "{{`{{.Names}}`}}\t{{`{{.ID}}`}}\t{{`{{.State}}`}}" | column -t'
+alias dps='docker ps --format "{{`{{.Names}}`}}\t{{`{{.ID}}`}}\t{{`{{.State}}`}}\t{{`{{.Status}}`}}" | column -t'
 alias fixmerge="git diff --name-only | uniq | xargs nvim"
 alias gdh="git diff HEAD^"
 alias gdm="git diff $(git_main_branch)"
