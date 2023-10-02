@@ -21,7 +21,11 @@ export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_TMUX_AUTOSTART="false"
 export ZSH_TMUX_UNICODE="true"
+{{ if not (eq .chezmoi.os "darwin") -}}
+{{ if eq .chezmoi.osRelease.id "manjaro" -}}
 export LC_ALL="C.UTF-8"
+{{ end -}}
+{{ end -}}
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # and https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
@@ -48,6 +52,7 @@ export CARGO_NET_GIT_FETCH_WITH_CLI=true
 
 export EDITOR="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
+export ANSIBLE_FACTS_DIR="$HOME/.local/share/ansible/facts"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
