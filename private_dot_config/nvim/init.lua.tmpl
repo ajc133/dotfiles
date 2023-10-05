@@ -1,12 +1,40 @@
+--------------
+-- Settings --
+--------------
+
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.cmd("set hidden")
+vim.opt.mouse = "a"
+
+vim.opt.cmdheight = 1
+vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.number = true
+vim.opt.updatetime = 50
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.scrolloff = 8
+
+-- Search options
+vim.opt.hlsearch = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.opt.autoindent = true
+vim.cmd("set expandtab")
+
+vim.opt.list = true
+vim.opt.listchars = { tab = "> ", trail = "·", nbsp = "+" }
+
 vim.g.mapleader = " "
+
+-- disable netrw at the very start of your init.lua (for nvim-tree)
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+
 --------------
 -- Mappings --
 --------------
-
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 
 -- Convenience
 local function map(mode, shortcut, command)
@@ -48,34 +76,6 @@ vmap("<Leader>y", '"+y')          -- Copy to system clipboard
 
 -- Terminal mode mappings
 tmap("<Esc>", "<C-\\><C-n>")
---------------
--- Settings --
---------------
-
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-vim.cmd("set hidden")
-vim.opt.mouse = "a"
-
-vim.opt.cmdheight = 1
-vim.opt.completeopt = { "menuone", "noselect" }
-vim.opt.number = true
-vim.opt.updatetime = 50
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.scrolloff = 8
-
--- Search options
-vim.opt.hlsearch = false
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
-vim.opt.autoindent = true
-vim.cmd("set expandtab")
-
-vim.opt.list = true
-vim.opt.listchars = { tab = "> ", trail = "·", nbsp = "+" }
-
 ------------------
 -- Autocommands --
 ------------------
@@ -250,6 +250,9 @@ require("nvim-treesitter.configs").setup {
 -- File tree
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
+
+  disable_netrw = false,
+  hijack_netrw = true,
   view = {
     adaptive_size = true,
     mappings = {
