@@ -129,5 +129,7 @@ return require("packer").startup(
       "nvim-telescope/telescope.nvim", tag = "0.1.*",
       requires = { { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" } }
     }
+
+    use "isobit/vim-caddyfile"
   end
 )
