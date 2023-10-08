@@ -108,12 +108,6 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use ]; then
 	git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
 fi
 
-if [ ! -f "$HOME/bin/cht.sh" ]; then
-  mkdir -p "$HOME/bin/"
-  curl https://cht.sh/:cht.sh > "$HOME/bin/cht.sh"
-  chmod +x "$HOME/bin/cht.sh"
-fi
-
 # fzf
 if [ ! -d "$HOME/.fzf" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
