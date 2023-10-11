@@ -1,4 +1,5 @@
 #!/bin/bash
+# source: https://cht.sh/:cht.sh
 # shellcheck disable=SC1117,SC2001
 #
 # [X] open section
