@@ -167,6 +167,27 @@ function vimrg () {
   rg -l "$1" | xargs nvim
 }
 
+function urldecode () {
+  arg=""
+  if [[ -n "$1" ]]; then
+      arg=$1
+  else
+      arg="$(cat)"
+  fi
+  python3 -c 'import sys; from urllib.parse import unquote; print(unquote(sys.argv[1]));' $arg 
+}
+
+function urlencode () {
+  arg=""
+  if [[ -n "$1" ]]; then
+      arg=$1
+  else
+      arg="$(cat)"
+  fi
+  python3 -c "import sys; from urllib.parse import quote; print(quote(sys.argv[1]));" $arg 
+}
+
+
 # Fuzzy find branch switching
 unalias gsw
 function gsw () {
