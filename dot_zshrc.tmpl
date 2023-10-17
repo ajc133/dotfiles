@@ -124,6 +124,7 @@ alias dps='docker ps --format "{{`{{.Names}}`}}\t{{`{{.ID}}`}}\t{{`{{.State}}`}}
 alias fixmerge="git diff --name-only | uniq | xargs nvim"
 alias gdh="git diff HEAD^"
 alias gdm="git diff $(git_main_branch)"
+alias gs="git status"
 alias hgrep="history | grep -i"
 alias lgit="lazygit"
 {{ if eq .chezmoi.os "linux" }}
