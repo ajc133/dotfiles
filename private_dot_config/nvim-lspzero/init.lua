@@ -17,49 +17,43 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-
-	{ 'folke/tokyonight.nvim' },
-	-- LSP Support
-	{
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v3.x',
-		lazy = true,
-		config = false,
-	},
-	{
-		'neovim/nvim-lspconfig',
-		dependencies = {
-			-- LSP Installers
-			{ 'williamboman/mason.nvim' },
-			{ 'williamboman/mason-lspconfig.nvim' },
-			-- Useful status updates for LSP
-			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ 'j-hui/fidget.nvim',                tag = 'legacy', opts = {} },
-
-			-- Additional lua configuration, makes nvim stuff amazing!
-			'folke/neodev.nvim',
-		}
-	},
-	-- Autocompletion
-	{
-		'hrsh7th/nvim-cmp',
-		dependencies = {
-			{ 'L3MON4D3/LuaSnip' },
-			{ 'hrsh7th/cmp-nvim-lsp' },
-			{ 'hrsh7th/cmp-buffer' },
-			{ 'saadparwaiz1/cmp_luasnip' },
-			-- Adds a number of user-friendly snippets
-			{ 'rafamadriz/friendly-snippets' },
-		},
-	},
-	-- Useful plugin to show you pending keybinds.
-	{ 'folke/which-key.nvim', opts = {} },
-})
+--------------
+-- Settings --
+--------------
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme('tokyonight')
+vim.opt.background = "dark"
+vim.opt.hidden = true
+vim.opt.mouse = "a"
+vim.opt.hidden = true
 
+vim.opt.cmdheight = 1
+vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.number = true
+vim.opt.updatetime = 50
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.scrolloff = 8
+
+-- Search options
+vim.opt.hlsearch = false
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.opt.autoindent = true
+vim.opt.expandtab = true
+
+vim.opt.list = true
+vim.opt.listchars = { tab = "> ", trail = "·", nbsp = "+" }
+
+vim.g.mapleader = " "
+
+
+-------------------
+-- LSP + Plugins --
+-------------------
+
+require('lazy').setup("plugins")
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(_, bufnr)
@@ -117,3 +111,8 @@ cmp.setup({
 
 	formatting = cmp_format,
 })
+
+
+vim.cmd.colorscheme('dracula')
+
+
