@@ -48,23 +48,62 @@ vim.opt.listchars = { tab = "> ", trail = "·", nbsp = "+" }
 
 vim.g.mapleader = " "
 
+-- Convenience
+local function map(mode, shortcut, command)
+  vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
+end
+
+local function nmap(shortcut, command)
+  map("n", shortcut, command)
+end
+
+local function imap(shortcut, command)
+  map("i", shortcut, command)
+end
+
+local function vmap(shortcut, command)
+  map("v", shortcut, command)
+end
+
+local function tmap(shortcut, command)
+  map("t", shortcut, command)
+end
+-- Normal mode mappings
+nmap("<TAB>", ":bnext<CR>")                -- TAB to next buffer
+nmap("<S-TAB>", ":bprevious<CR>")          -- Shift + TAB to prev buffer
+nmap("<C-s>", ":write<cr>")                -- Save
+nmap("<Leader>c", "<C-w>c")                -- Close window
+nmap("<Leader>d", '"_d')                   -- Blackhole register
+nmap("<Leader>p", "$p<cr>")                -- Paste to end of line
+nmap("<Leader>s", ":%s/\\<<C-r><C-w>\\>/") -- Search-replace word in file
+nmap("<Leader>x", ":bdelete<cr>")          -- Close buffer
+nmap("<Leader>y", '"+y')                   -- Copy to system clipboard
+
+-- Visual mode mappings
+vmap("<", "<gv")                  -- Keep visual selection when indenting forward
+vmap(">", ">gv")                  -- Keep visual selection when indenting backward
+vmap("<Leader>j", "!jq '.' <CR>") -- Format JSON under visual selection
+vmap("<Leader>y", '"+y')          -- Copy to system clipboard
+
+-- Terminal mode mappings
+tmap("<Esc>", "<C-\\><C-n>")
 
 ------------------
 -- Autocommands --
 ------------------
-local autocmd = vim.api.nvim_create_autocmd
 
 -- Dotfile management
-autocmd({ "BufWritePost" }, {
-  pattern = { vim.fn.expand("~") .. "/.local/share/chezmoi/private_dot_config/nvim-lspzero/*" },
-  command = "! chezmoi apply",
-})
+vim.cmd('autocmd BufWritePost ~/.local/share/chezmoi/private_dot_config/nvim-lspzero/* lua vim.lsp.buf.format()')
 
 -- Highlight yank
-autocmd({ "TextYankPost" }, {
-  pattern = { "*" },
-  command = "lua require'vim.highlight'.on_yank()"
-})
+vim.cmd("autocmd TextYankPost * lua require'vim.highlight'.on_yank()")
+
+-- Highlight all search matches only while typing
+vim.cmd('autocmd CmdlineEnter /,\\? :set hlsearch')
+vim.cmd('autocmd CmdlineLeave /,\\? :set nohlsearch')
+
+-- Format on save
+vim.cmd('autocmd BufWritePre * lua vim.lsp.buf.format()')
 
 require('lazy').setup("plugins")
 
@@ -129,5 +168,17 @@ cmp.setup({
 
   formatting = cmp_format,
 })
+
+-- Gitsigns
+-- See `:help gitsigns.txt`
+require("gitsigns").setup {
+  signs = {
+    add = { text = "+" },
+    change = { text = "~" },
+    delete = { text = "_" },
+    topdelete = { text = "‾" },
+    changedelete = { text = "~" },
+  },
+}
 
 vim.cmd.colorscheme('dracula')
