@@ -17,6 +17,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+
 --------------
 -- Settings --
 --------------
@@ -93,7 +94,8 @@ tmap("<Esc>", "<C-\\><C-n>")
 ------------------
 
 -- Dotfile management
-vim.cmd('autocmd BufWritePost ~/.local/share/chezmoi/private_dot_config/nvim-lspzero/* lua vim.lsp.buf.format()')
+vim.cmd(
+  'autocmd BufWritePost ~/.local/share/chezmoi/private_dot_config/nvim-lspzero/* :!chezmoi apply ~/.config/nvim-lspzero')
 
 -- Highlight yank
 vim.cmd("autocmd TextYankPost * lua require'vim.highlight'.on_yank()")
@@ -178,6 +180,23 @@ require("gitsigns").setup {
     delete = { text = "_" },
     topdelete = { text = "‾" },
     changedelete = { text = "~" },
+  },
+}
+
+
+require('dap-go').setup {
+  -- Additional dap configurations can be added.
+  -- dap_configurations accepts a list of tables where each entry
+  -- represents a dap configuration. For more details do:
+  -- :help dap-configuration
+  dap_configurations = {
+    {
+      -- Must be "go" or it will be ignored by the plugin
+      type = "go",
+      name = "Attach remote",
+      mode = "remote",
+      request = "attach",
+    },
   },
 }
 
