@@ -171,6 +171,10 @@ cmp.setup({
   formatting = cmp_format,
 })
 
+-------------------
+-- Other Plugins --
+-------------------
+
 -- Gitsigns
 -- See `:help gitsigns.txt`
 require("gitsigns").setup {
@@ -183,7 +187,7 @@ require("gitsigns").setup {
   },
 }
 
-
+-- Go Debugger
 require('dap-go').setup {
   -- Additional dap configurations can be added.
   -- dap_configurations accepts a list of tables where each entry
@@ -201,3 +205,18 @@ require('dap-go').setup {
 }
 
 vim.cmd.colorscheme('dracula')
+
+
+--------------
+-- Mappings --
+--------------
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>fr', builtin.resume, {})
+vim.keymap.set('n', '<leader>fw', builtin.grep_string, {})
+
+vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
