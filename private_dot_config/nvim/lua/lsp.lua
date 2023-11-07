@@ -116,6 +116,15 @@ require("lspconfig")["gopls"].setup {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
+  settings = {
+    gopls = {
+      ["ui.inlayhint.hints"] = {
+        compositeLiteralFields = true,
+        constantValues = true,
+        parameterNames = true
+      }
+    }
+  }
 }
 
 require("lspconfig")["pyright"].setup {
