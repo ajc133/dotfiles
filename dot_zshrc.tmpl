@@ -209,6 +209,24 @@ lt() {
   eval $cmdl
 }
 
+qr() {
+    # Check if qrencode is installed
+    if ! command -v qrencode &> /dev/null; then
+        echo "Error: qrencode is not installed. Please install qrencode before using this function."
+        return 1
+    fi
+
+    # Check if display (ImageMagick) is installed
+    if ! command -v display &> /dev/null; then
+        echo "Error: ImageMagick (display) is not installed. Please install ImageMagick before using this function."
+        return 1
+    fi
+
+    # Generate QR code and display it
+    qrencode "$1" -o - | display
+}
+
+
 eval "$(direnv hook zsh)"
 
 {{ if eq .chezmoi.os "darwin" }}
