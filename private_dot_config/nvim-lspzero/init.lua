@@ -123,7 +123,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'gopls', 'rust_analyzer', 'bashls' },
+  ensure_installed = { 'gopls', 'rust_analyzer', 'bashls', 'lua_ls' },
   handlers = {
     lsp_zero.default_setup,
   },

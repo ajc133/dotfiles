@@ -9,4 +9,7 @@ return {
   { 'mfussenegger/nvim-dap' },
   { 'leoluz/nvim-dap-go' },
 
+  -- Commenting
+  { 'tpope/vim-commentary' },
+
 }
