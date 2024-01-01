@@ -26,6 +26,7 @@ sudo -n pacman --noconfirm -S \
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
 sudo -n apt-get update -y
 sudo -n apt-get install -y \
+    cmake \
     fd-find \
     gnome-tweaks \
     hexyl \
