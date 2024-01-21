@@ -77,7 +77,7 @@ nmap("<Leader>c", "<C-w>c")                -- Close window
 nmap("<Leader>d", '"_d')                   -- Blackhole register
 nmap("<Leader>p", "$p<cr>")                -- Paste to end of line
 nmap("<Leader>s", ":%s/\\<<C-r><C-w>\\>/") -- Search-replace word in file
-nmap("<Leader>x", ":bdelete<cr>")          -- Close buffer
+nmap("<Leader>x", ":bdelete<CR>")          -- Close buffer
 nmap("<Leader>y", '"+y')                   -- Copy to system clipboard
 
 -- Visual mode mappings
@@ -113,63 +113,75 @@ require('lazy').setup("plugins")
 ---------
 -- LSP --
 ---------
-local lsp_zero = require('lsp-zero')
+---- note: diagnostics are not exclusive to lsp servers
+-- so these can be global keybindings
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
-lsp_zero.on_attach(function(_, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({ buffer = bufnr })
-end)
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(event)
+    local opts = { buffer = event.buf }
+
+    -- these will be buffer-local keybindings
+    -- because they only work if you have an active language server
+
+    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+  end
+})
+
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local default_setup = function(server)
+  require('lspconfig')[server].setup({
+    capabilities = lsp_capabilities,
+  })
+end
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'gopls', 'rust_analyzer', 'bashls', 'lua_ls' },
+  ensure_installed = {},
   handlers = {
-    lsp_zero.default_setup,
+    default_setup,
   },
 })
-
-local lua_opts = lsp_zero.nvim_lua_ls({
-  single_file_support = false,
-})
-
-require('lspconfig').lua_ls.setup(lua_opts)
-
 
 local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-local cmp_format = require('lsp-zero').cmp_format()
-
-require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
-  preselect = 'item',
-  completion = {
-    completeopt = 'menu,menuone,noinsert'
-  },
   sources = {
     { name = 'nvim_lsp' },
     { name = 'buffer' },
   },
-  -- Adding to nvim-cmp's preset so I don't lose default keybindings
   mapping = cmp.mapping.preset.insert({
-    -- `Enter` key to confirm completion
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    -- Enter key confirms completion item
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
-    -- Ctrl+Space to trigger completion menu
+    -- Ctrl + space triggers completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
-
-    -- Navigate between snippet placeholder
-    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
 
     -- Scroll up and down in the completion documentation
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
   }),
-
-  formatting = cmp_format,
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
 })
+
+
 
 -------------------
 -- Other Plugins --
@@ -218,5 +230,4 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 vim.keymap.set('n', '<leader>fw', builtin.grep_string, {})
-
 vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
