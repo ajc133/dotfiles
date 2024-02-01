@@ -85,6 +85,7 @@ vmap("<", "<gv")                  -- Keep visual selection when indenting forwar
 vmap(">", ">gv")                  -- Keep visual selection when indenting backward
 vmap("<Leader>j", "!jq '.' <CR>") -- Format JSON under visual selection
 vmap("<Leader>y", '"+y')          -- Copy to system clipboard
+vmap("<Leader>s", '"7y | :%s/\\<<C-r>7\\>/')
 
 -- Terminal mode mappings
 tmap("<Esc>", "<C-\\><C-n>")
