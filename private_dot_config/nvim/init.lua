@@ -116,7 +116,7 @@ require('lazy').setup("plugins")
 ---------
 ---- note: diagnostics are not exclusive to lsp servers
 -- so these can be global keybindings
-vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<cr>')
+vim.keymap.set('n', '<leader>e', "<cmd>lua vim.diagnostic.open_float()<cr>")
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
@@ -159,6 +159,8 @@ require('mason-lspconfig').setup({
 
 require('mason-tool-installer').setup {
   ensure_installed = {
+    'ansible-language-server',
+    'ansible-lint',
     -- Commented the ones I want to try in the future
     'bash-language-server',
     'black',
@@ -170,9 +172,9 @@ require('mason-tool-installer').setup {
     -- 'gotests',
     'html-lsp',
     'isort',
-    'jedi-language-server',
     -- 'json-to-struct',
     'lua-language-server',
+    'pyright',
     'rust-analyzer',
     'shellcheck',
     'terraform-ls',
