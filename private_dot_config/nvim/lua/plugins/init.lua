@@ -15,4 +15,11 @@ return {
   -- Commenting
   { 'tpope/vim-commentary' },
 
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+    }
+  }
 }

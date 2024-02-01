@@ -273,3 +273,6 @@ nmap("<Leader>gw", ":Gwrite<cr>")     -- git add %
 nmap("<Leader>gc", ":Git commit<cr>") -- git commit
 nmap("<Leader>grm", ":Gremove<cr>")   -- git rm %
 nmap('<Leader>gmv', ':Gmove ')        -- git mv <path>
+
+-- Trouble
+nmap("<leader>t", function() require("trouble").toggle() end)
