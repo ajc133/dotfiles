@@ -95,7 +95,8 @@ tmap("<Esc>", "<C-\\><C-n>")
 
 -- Dotfile management
 vim.cmd(
-  'autocmd BufWritePost ~/.local/share/chezmoi/private_dot_config/nvim-lspzero/* :!chezmoi apply ~/.config/nvim-lspzero')
+  'autocmd BufWritePost ~/.local/share/chezmoi/private_dot_config/nvim/* :!chezmoi apply ~/.config/nvim'
+)
 
 -- Highlight yank
 vim.cmd("autocmd TextYankPost * lua require'vim.highlight'.on_yank()")
@@ -115,7 +116,7 @@ require('lazy').setup("plugins")
 ---------
 ---- note: diagnostics are not exclusive to lsp servers
 -- so these can be global keybindings
-vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<cr>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
@@ -174,6 +175,7 @@ require('mason-tool-installer').setup {
     'lua-language-server',
     'rust-analyzer',
     'shellcheck',
+    'terraform-ls',
     'typescript-language-server',
     -- 'staticcheck',
     'yaml-language-server',
@@ -245,7 +247,7 @@ require('dap-go').setup {
   },
 }
 
-vim.cmd.colorscheme('dracula')
+vim.cmd.colorscheme('onedark')
 
 
 --------------

@@ -64,6 +64,7 @@ return {
         "query",
         "regex",
         "rust",
+        "terraform",
         "toml",
         "tsx",
         "typescript",
