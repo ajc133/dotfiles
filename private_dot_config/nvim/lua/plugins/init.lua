@@ -5,6 +5,9 @@ return {
   -- gitsigns
   { 'lewis6991/gitsigns.nvim' },
 
+  -- git blame
+  { 'tpope/vim-fugitive' },
+
   -- Debugger
   { 'mfussenegger/nvim-dap' },
   { 'leoluz/nvim-dap-go' },

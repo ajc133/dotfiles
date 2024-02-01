@@ -252,11 +252,20 @@ vim.cmd.colorscheme('dracula')
 -- Mappings --
 --------------
 
+
+-- Telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fr', builtin.resume, {})
-vim.keymap.set('n', '<leader>fw', builtin.grep_string, {})
-vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
+nmap("<leader>fb", builtin.buffers)
+nmap("<leader>ff", builtin.find_files)
+nmap("<leader>fg", builtin.live_grep)
+nmap("<leader>fh", builtin.help_tags)
+nmap("<leader>fr", builtin.resume)
+nmap("<leader>fw", builtin.grep_string)
+nmap("<leader>gr", builtin.lsp_references)
+
+-- Git Fugitive
+nmap("<Leader>gb", ":Git blame<cr>")  -- git blame %
+nmap("<Leader>gw", ":Gwrite<cr>")     -- git add %
+nmap("<Leader>gc", ":Git commit<cr>") -- git commit
+nmap("<Leader>grm", ":Gremove<cr>")   -- git rm %
+nmap('<Leader>gmv', ':Gmove ')        -- git mv <path>
