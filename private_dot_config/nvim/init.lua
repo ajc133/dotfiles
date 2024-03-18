@@ -59,7 +59,6 @@ local function nmap(shortcut, command)
 end
 
 local function imap(shortcut, command)
-  map("i", shortcut, command)
 end
 
 local function vmap(shortcut, command)
@@ -79,6 +78,7 @@ nmap("<Leader>p", "$p<cr>")                -- Paste to end of line
 nmap("<Leader>s", ":%s/\\<<C-r><C-w>\\>/") -- Search-replace word in file
 nmap("<Leader>x", ":bdelete<CR>")          -- Close buffer
 nmap("<Leader>y", '"+y')                   -- Copy to system clipboard
+nmap("<Leader>.", '@:')                    -- Do the most recent Ex command
 
 -- Visual mode mappings
 vmap("<", "<gv")                  -- Keep visual selection when indenting forward
