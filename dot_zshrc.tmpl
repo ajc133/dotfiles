@@ -131,6 +131,7 @@ alias gdh="git diff HEAD^"
 alias gdm="git diff $(git_main_branch)"
 alias gs="git status"
 alias hgrep="history | grep -i"
+alias -g latest='$HOME/Downloads/*(om[1])'
 alias lgit="lazygit"
 {{ if eq .chezmoi.os "linux" }}
 alias open="xdg-open"
@@ -141,6 +142,7 @@ alias rg="rg --colors=match:style:underline"
 alias sai="sudo apt install"
 alias sau="sudo apt update"
 {{ end }}
+alias pbssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 {{ if eq .chezmoi.os "darwin" }}
 alias sed="gsed"
 alias tstart="tmuxinator start work"
