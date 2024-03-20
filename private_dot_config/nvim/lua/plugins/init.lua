@@ -1,40 +1,66 @@
 return {
-  -- Useful plugin to show you pending keybinds.
-  {
-    'folke/which-key.nvim',
-    event = "VimEnter",
-    config = function()
-      require("which-key").setup()
+	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
-      -- require('which-key').register {
-      --   ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-      --   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-      --   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-      --   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-      --   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-      -- }
-    end
+	-- Useful plugin to show you pending keybinds.
+	{
+		"folke/which-key.nvim",
+		event = "VimEnter",
+		config = function()
+			require("which-key").setup()
 
-  },
+			require("which-key").register({
+				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
+				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
+				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+			})
+		end,
+	},
 
-  -- gitsigns
-  { 'lewis6991/gitsigns.nvim' },
+	-- gitsigns
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+			},
+		},
+	},
 
-  -- git blame
-  { 'tpope/vim-fugitive' },
+	-- git blame
+	{
+		"tpope/vim-fugitive",
+		config = function()
+			vim.keymap.set("n", "<Leader>gb", ":Git blame<cr>", { desc = "[g]it [B]lame" })
+			vim.keymap.set("n", "<Leader>gw", ":Gwrite<cr>", { desc = "[g]it [w]rite" })
+			vim.keymap.set("n", "<Leader>grm", ":Gremove<cr>", { desc = "[g]it [r]e[m]ove" })
+			vim.keymap.set("n", "<Leader>gmv", ":Gmove ", { desc = "[g]it [mv]" })
+		end,
+		opts = {},
+	},
 
-  -- Debugger
-  { 'mfussenegger/nvim-dap' },
-  { 'leoluz/nvim-dap-go' },
+	-- Debugger
+	{ "mfussenegger/nvim-dap" },
+	{ "leoluz/nvim-dap-go" },
 
-  -- Commenting
-  { 'tpope/vim-commentary' },
+	-- "gc" to comment visual regions/lines
+	{ "numToStr/Comment.nvim", opts = {} },
 
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- your configuration comes here
-    }
-  }
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			-- your configuration comes here
+		},
+		config = function()
+			vim.keymap.set("n", "<leader>t", function()
+				require("trouble").toggle()
+			end)
+		end,
+	},
 }
