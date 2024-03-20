@@ -1,8 +1,7 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-local uv = vim.uv or vim.loop
 
 -- Auto-install lazy.nvim if not present
-if not uv.fs_stat(lazypath) then
+if not vim.loop.fs_stat(lazypath) then
   print('Installing lazy.nvim....')
   vim.fn.system({
     'git',
@@ -13,10 +12,8 @@ if not uv.fs_stat(lazypath) then
     lazypath,
   })
   print('Done.')
-end
-
+end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-
 
 --------------
 -- Settings --
@@ -49,58 +46,48 @@ vim.opt.listchars = { tab = "> ", trail = "·", nbsp = "+" }
 
 vim.g.mapleader = " "
 
--- Convenience
-local function map(mode, shortcut, command)
-  vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
-end
-
-local function nmap(shortcut, command)
-  map("n", shortcut, command)
-end
-
-local function imap(shortcut, command)
-end
-
-local function vmap(shortcut, command)
-  map("v", shortcut, command)
-end
-
-local function tmap(shortcut, command)
-  map("t", shortcut, command)
-end
 -- Normal mode mappings
-nmap("<TAB>", ":bnext<CR>")                -- TAB to next buffer
-nmap("<S-TAB>", ":bprevious<CR>")          -- Shift + TAB to prev buffer
-nmap("<C-s>", ":write<cr>")                -- Save
-nmap("<Leader>c", "<C-w>c")                -- Close window
-nmap("<Leader>d", '"_d')                   -- Blackhole register
-nmap("<Leader>p", "$p<cr>")                -- Paste to end of line
-nmap("<Leader>s", ":%s/\\<<C-r><C-w>\\>/") -- Search-replace word in file
-nmap("<Leader>x", ":bdelete<CR>")          -- Close buffer
-nmap("<Leader>y", '"+y')                   -- Copy to system clipboard
-nmap("<Leader>.", '@:')                    -- Do the most recent Ex command
+vim.keymap.set("n", "<TAB>", ":bnext<CR>", { desc = "TAB to next buffer" })
+vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", { desc = "Shift + TAB to prev buffer" })
+vim.keymap.set("n", "<C-s>", ":write<cr>", { desc = "Save" })
+vim.keymap.set("n", "<Leader>c", "<C-w>c", { desc = "Close window" })
+vim.keymap.set("n", "<Leader>d", '"_d', { desc = "Blackhole register" })
+vim.keymap.set("n", "<Leader>p", "$p<cr>", { desc = "Paste to end of line" })
+-- vim.keymap.set("n", "<Leader>s", ":%s/\\<<C-r><C-w>\\>/", { desc = " -- Search-replace word in file" })
+vim.keymap.set("n", "<Leader>x", ":bdelete<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<Leader>y", '"+y', { desc = "Copy to system clipboard" })
+vim.keymap.set("n", "<Leader>.", '@:', { desc = "Do the most recent Ex command" })
 
--- Visual mode mappings
-vmap("<", "<gv")                  -- Keep visual selection when indenting forward
-vmap(">", ">gv")                  -- Keep visual selection when indenting backward
-vmap("<Leader>j", "!jq '.' <CR>") -- Format JSON under visual selection
-vmap("<Leader>y", '"+y')          -- Copy to system clipboard
-vmap("<Leader>s", '"7y | :%s/\\<<C-r>7\\>/')
+-- Visual mode mappings" })
+vim.keymap.set("v", "<", "<gv", { desc = "Keep visual selection when indenting forward" })
+vim.keymap.set("v", ">", ">gv", { desc = "Keep visual selection when indenting backward" })
+vim.keymap.set("v", "<Leader>j", "!jq '.' <CR>", { desc = "Format JSON under visual selection" })
+vim.keymap.set("v", "<Leader>y", '"+y', { desc = "Copy to system clipboard" })
+vim.keymap.set("v", "<Leader>s", '"7y | :%s/\\<<C-r>7\\>/', { desc = "" })
 
 -- Terminal mode mappings
-tmap("<Esc>", "<C-\\><C-n>")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape terminal mode sensibly" })
 
 ------------------
 -- Autocommands --
 ------------------
 
 -- Dotfile management
-vim.cmd(
-  'autocmd BufWritePost ~/.local/share/chezmoi/private_dot_config/nvim/* :!chezmoi apply ~/.config/nvim'
-)
+vim.api.nvim_create_autocmd("BufWritePost", {
+  desc = "Apply Chezmoi nvim config on change",
+  group = vim.api.nvim_create_augroup("chezmoi-write", { clear = true }),
+  command = ":!chezmoi apply ~/.config/nvim"
+})
 
--- Highlight yank
-vim.cmd("autocmd TextYankPost * lua require'vim.highlight'.on_yank()")
+-- Highlight when yanking (copying) text
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
 -- Highlight all search matches only while typing
 vim.cmd('autocmd CmdlineEnter /,\\? :set hlsearch')
@@ -117,78 +104,63 @@ require('lazy').setup("plugins")
 ---------
 ---- note: diagnostics are not exclusive to lsp servers
 -- so these can be global keybindings
-vim.keymap.set('n', '<leader>e', "<cmd>lua vim.diagnostic.open_float()<cr>")
-vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
-vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = function(event)
-    local opts = { buffer = event.buf }
+-- vim.keymap.set('n', '<leader>e', "<cmd>lua vim.diagnostic.open_float()<cr>")
+-- vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+-- vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
-    -- these will be buffer-local keybindings
-    -- because they only work if you have an active language server
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   desc = 'LSP actions',
+--   callback = function(event)
+--     local opts = { buffer = event.buf }
 
-    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    -- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-  end
-})
+--     -- these will be buffer-local keybindings
+--     -- because they only work if you have an active language server
 
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+--     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+--     vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+--     vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+--     vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+--     vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+--     -- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+--     vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+--     vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+--     vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+--     vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+--   end
+-- })
 
-local default_setup = function(server)
-  require('lspconfig')[server].setup({
-    capabilities = lsp_capabilities,
-  })
-end
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = {},
-  handlers = {
-    default_setup,
-  },
-})
-
-require('mason-tool-installer').setup {
-  ensure_installed = {
-    'ansible-language-server',
-    'ansible-lint',
-    -- Commented the ones I want to try in the future
-    'bash-language-server',
-    'black',
-    'editorconfig-checker',
-    'golangci-lint',
-    'golines',
-    -- 'gomodifytags',
-    'gopls',
-    -- 'gotests',
-    'html-lsp',
-    'isort',
-    -- 'json-to-struct',
-    'lua-language-server',
-    'pyright',
-    'rust-analyzer',
-    'shellcheck',
-    'terraform-ls',
-    'typescript-language-server',
-    -- 'staticcheck',
-    'yaml-language-server',
-  },
-
-  auto_update = false,
-  run_on_start = true,
-  start_delay = 3000, -- 3 second delay
-  debounce_hours = 5, -- at least 5 hours between attempts to install/update
-}
+-- require('mason-tool-installer').setup {
+--   ensure_installed = {
+--     'ansible-language-server',
+--     'ansible-lint',
+--     -- commented the ones i want to try in the future
+--     'bash-language-server',
+--     'black',
+--     'editorconfig-checker',
+--     'golangci-lint',
+--     'golines',
+--     -- 'gomodifytags',
+--     'gopls',
+--     -- 'gotests',
+--     'html-lsp',
+--     'isort',
+--     -- 'json-to-struct',
+--     'lua-language-server',
+--     'pyright',
+--     'rust-analyzer',
+--     'shellcheck',
+--     'terraform-ls',
+--     'typescript-language-server',
+--     -- 'staticcheck',
+--     'yaml-language-server',
+--   },
+--   auto_update = false,
+--   run_on_start = true,
+--   start_delay = 3000, -- 3 second delay
+--   debounce_hours = 5, -- at least 5 hours between attempts to install/update
+-- }
 
 local cmp = require('cmp')
 
@@ -257,23 +229,12 @@ vim.cmd.colorscheme('onedark')
 -- Mappings --
 --------------
 
-
--- Telescope
-local builtin = require('telescope.builtin')
-nmap("<leader>fb", builtin.buffers)
-nmap("<leader>ff", builtin.find_files)
-nmap("<leader>fg", builtin.live_grep)
-nmap("<leader>fh", builtin.help_tags)
-nmap("<leader>fr", builtin.resume)
-nmap("<leader>fw", builtin.grep_string)
-nmap("<leader>gr", builtin.lsp_references)
-
 -- Git Fugitive
-nmap("<Leader>gb", ":Git blame<cr>")  -- git blame %
-nmap("<Leader>gw", ":Gwrite<cr>")     -- git add %
-nmap("<Leader>gc", ":Git commit<cr>") -- git commit
-nmap("<Leader>grm", ":Gremove<cr>")   -- git rm %
-nmap('<Leader>gmv', ':Gmove ')        -- git mv <path>
+vim.keymap.set("n", "<Leader>gb", ":Git blame<cr>")  -- git blame %
+vim.keymap.set("n", "<Leader>gw", ":Gwrite<cr>")     -- git add %
+vim.keymap.set("n", "<Leader>gc", ":Git commit<cr>") -- git commit
+vim.keymap.set("n", "<Leader>grm", ":Gremove<cr>")   -- git rm %
+vim.keymap.set("n", '<Leader>gmv', ':Gmove ')        -- git mv <path>
 
 -- Trouble
-nmap("<leader>t", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>t", function() require("trouble").toggle() end)
