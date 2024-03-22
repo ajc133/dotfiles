@@ -77,6 +77,7 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape terminal mode sensi
 vim.api.nvim_create_autocmd("BufWritePost", {
 	desc = "Apply Chezmoi nvim config on change",
 	group = vim.api.nvim_create_augroup("chezmoi-write", { clear = true }),
+	pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/private_dot_config/nvim/*",
 	command = ":!chezmoi apply ~/.config/nvim",
 })
 
