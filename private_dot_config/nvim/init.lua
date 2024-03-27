@@ -95,9 +95,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.cmd("autocmd CmdlineEnter /,\\? :set hlsearch")
 vim.cmd("autocmd CmdlineLeave /,\\? :set nohlsearch")
 
--- Format on save
-vim.cmd("autocmd BufWritePre * lua vim.lsp.buf.format()")
-
 require("lazy").setup("plugins")
 
 vim.cmd.colorscheme("onedark")
