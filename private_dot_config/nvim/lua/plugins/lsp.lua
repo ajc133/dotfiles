@@ -229,7 +229,9 @@ return {
 			-- Adds other completion capabilities.
 			--  nvim-cmp does not ship with all sources by default. They are split
 			--  into multiple repos for maintenance purposes.
+			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-path",
 		},
 		config = function()
@@ -278,12 +280,12 @@ return {
 					--
 					-- <c-l> will move you to the right of each of the expansion locations.
 					-- <c-h> is similar, except moving you backwards.
-					["<TAB>"] = cmp.mapping(function()
+					["<C-l>"] = cmp.mapping(function()
 						if luasnip.expand_or_locally_jumpable() then
 							luasnip.expand_or_jump()
 						end
 					end, { "i", "s" }),
-					["<S-TAB>"] = cmp.mapping(function()
+					["<C-h>"] = cmp.mapping(function()
 						if luasnip.locally_jumpable(-1) then
 							luasnip.jump(-1)
 						end
@@ -293,9 +295,18 @@ return {
 					--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 				}),
 				sources = {
-					{ name = "nvim_lsp" },
+					{ name = "buffer" },
 					{ name = "luasnip" },
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "path" },
+				},
+				sorting = {
+					comparators = {
+						function(...)
+							return require("cmp_buffer"):compare_locality(...)
+						end,
+					},
 				},
 			})
 		end,
