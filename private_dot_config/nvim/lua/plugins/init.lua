@@ -1,5 +1,6 @@
 return {
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	"fladson/vim-kitty", -- Syntax highlighting for Kitty terminal config files.
 
 	-- Useful plugin to show you pending keybinds.
 	{
@@ -61,6 +62,16 @@ return {
 			vim.keymap.set("n", "<leader>t", function()
 				require("trouble").toggle()
 			end)
+		end,
+	},
+
+	{
+		"rmagatti/auto-session",
+		config = function()
+			require("auto-session").setup({
+				log_level = "error",
+				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+			})
 		end,
 	},
 }
