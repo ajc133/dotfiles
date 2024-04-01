@@ -111,12 +111,31 @@ return {
 				gopls = {},
 				html = {},
 				marksman = {},
-				pyright = {},
+				pylsp = {
+					settings = {
+						pylsp = {
+							configuration_sources = { "flake8" },
+							plugins = {
+								flake8 = {
+									enabled = true,
+								},
+								pycodestyle = {
+									enabled = false,
+								},
+								mccabe = {
+									enabled = false,
+								},
+								pyflakes = {
+									enabled = false,
+								},
+							},
+						},
+					},
+				},
 				rust_analyzer = {},
 				terraformls = {},
 				tsserver = {},
 				yamlls = {},
-
 				lua_ls = {
 					-- cmd = {...},
 					-- filetypes = { ...},
@@ -145,10 +164,12 @@ return {
 			vim.list_extend(ensure_installed, {
 				"ansible-lint",
 				"black",
+				"flake8",
 				"gofumpt",
 				"goimports",
 				"gomodifytags",
 				"isort",
+				"mypy",
 				"shellcheck",
 				"stylua", -- Used to format Lua code
 			})
