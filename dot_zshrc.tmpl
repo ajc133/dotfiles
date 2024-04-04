@@ -2,6 +2,11 @@
 # zmodload zsh/zprof
 autoload zmv zcalc
 
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
+
 # Start ssh-agent
 if [ -z "$SSH_AUTH_SOCK" ]; then
    # Check for a currently running instance of the agent
@@ -31,7 +36,6 @@ export ZSH_TMUX_AUTOSTART="false"
 export ZSH_TMUX_UNICODE="true"
 {{ if not (eq .chezmoi.os "darwin") -}}
 {{ if eq .chezmoi.osRelease.id "manjaro" -}}
-export LC_ALL="C.UTF-8"
 {{ end -}}
 {{ end -}}
 

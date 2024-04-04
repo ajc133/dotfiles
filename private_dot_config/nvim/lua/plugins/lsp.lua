@@ -116,6 +116,13 @@ return {
 						pylsp = {
 							configuration_sources = { "flake8" },
 							plugins = {
+								black = {
+									enabled = true,
+								},
+								pylsp_mypy = {
+									-- pip install pylsp-mypy
+									enabled = true,
+								},
 								flake8 = {
 									enabled = true,
 								},
@@ -169,7 +176,7 @@ return {
 				"goimports",
 				"gomodifytags",
 				"isort",
-				"mypy",
+				-- "mypy", -- pip install python-lsp-black
 				"shellcheck",
 				"stylua", -- Used to format Lua code
 			})
