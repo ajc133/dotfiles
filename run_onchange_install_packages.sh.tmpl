@@ -21,6 +21,7 @@ sudo -n pacman --noconfirm -S \
     podman \
     podman-compose \
     podman-dnsname \
+    python-pipx \
     ripgrep \
     rustup \
     terraform \
@@ -48,6 +49,10 @@ sudo -n apt-get install -y \
     xclip \
     yq \
     zsh
+{{ end -}}
+
+{{ if eq .chezmoi.osRelease.id "manjaro" -}}
+pipx install poetry
 {{ end -}}
 
 {{ if eq .chezmoi.os "darwin" -}}
