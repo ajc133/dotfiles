@@ -47,6 +47,7 @@ return {
 				"bash",
 				"c",
 				"diff",
+				"graphql",
 				"go",
 				"html",
 				"javascript",
