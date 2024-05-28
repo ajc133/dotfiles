@@ -64,7 +64,7 @@ vim.keymap.set("v", "<", "<gv", { desc = "Keep visual selection when indenting f
 vim.keymap.set("v", ">", ">gv", { desc = "Keep visual selection when indenting backward" })
 vim.keymap.set("v", "<Leader>j", "!jq '.' <CR>", { desc = "Format JSON under visual selection" })
 vim.keymap.set("v", "<Leader>y", '"+y', { desc = "Copy to system clipboard" })
-vim.keymap.set("v", "<Leader><F2>", '"7y | :%s/\\<<C-r>7\\>/', { desc = "" })
+vim.keymap.set("v", "<F2>", '"7y | :%s/\\<<C-r>7\\>/', { desc = "" })
 
 -- Terminal mode mappings
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape terminal mode sensibly" })
