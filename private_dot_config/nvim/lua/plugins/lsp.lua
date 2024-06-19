@@ -108,9 +108,11 @@ return {
 				-- `:help lspconfig-all` for a list of all the pre-configured LSPs
 				ansiblels = {},
 				bashls = {},
+				graphql = {},
 				gopls = {},
 				html = {},
 				marksman = {},
+				prismals = {},
 				pylsp = {
 					settings = {
 						pylsp = {
@@ -282,7 +284,7 @@ return {
 				},
 				completion = {
 					completeopt = "menu,menuone,noinsert",
-					keyword_length = 3,
+					-- keyword_length = 3,
 				},
 				-- For an understanding of why these mappings were
 				-- chosen, you will need to read `:help ins-completion`
@@ -331,12 +333,12 @@ return {
 					--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 				}),
 				sources = {
-					{ name = "buffer" },
-					{ name = "luasnip" },
-					{ name = "nvim_lsp" },
-					{ name = "nvim_lsp_signature_help" },
-					{ name = "path" },
-					{ name = "nvim_lua" },
+					{ name = "nvim_lsp", priority = 10 },
+					{ name = "nvim_lsp_signature_help", priority = 10 },
+					-- { name = "buffer" },
+					-- { name = "path" },
+					-- { name = "luasnip" },
+					-- { name = "nvim_lua" },
 				},
 				sorting = {
 					comparators = {

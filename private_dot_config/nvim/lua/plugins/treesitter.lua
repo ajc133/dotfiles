@@ -59,6 +59,7 @@ return {
 				"luap",
 				"markdown",
 				"markdown_inline",
+				"prisma",
 				"python",
 				"query",
 				"regex",
