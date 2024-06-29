@@ -110,7 +110,12 @@ return {
 				bashls = {},
 				graphql = {},
 				gopls = {},
-				html = {},
+				html = {
+					filetypes = {
+						"html",
+						"htmldjango",
+					},
+				},
 				marksman = {},
 				prismals = {},
 				pylsp = {
