@@ -98,3 +98,9 @@ vim.cmd("autocmd CmdlineLeave /,\\? :set nohlsearch")
 require("lazy").setup("plugins")
 
 vim.cmd.colorscheme("onedark")
+require("lualine").setup({
+	sections = {
+		lualine_c = { "buffers" },
+		lualine_x = { "filetype" },
+	},
+})

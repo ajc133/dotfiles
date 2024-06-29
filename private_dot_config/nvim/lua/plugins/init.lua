@@ -1,6 +1,5 @@
 return {
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	"fladson/vim-kitty", -- Syntax highlighting for Kitty terminal config files.
 
 	-- Useful plugin to show you pending keybinds.
 	{
@@ -73,5 +72,9 @@ return {
 				auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
 			})
 		end,
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 }
