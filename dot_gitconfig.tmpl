@@ -15,6 +15,9 @@
 [init]
     defaultBranch = main
 
+[rerere]
+	enabled = true
+
 {{ if eq .chezmoi.os "darwin" }}
 [url "git@git.2nd.io:"]
     insteadOf = https://git.2nd.io/
