@@ -67,12 +67,12 @@ if [ ! -f "/usr/local/bin/nvim" ]; then
   brew install -q neovim
 fi
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
-# Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
-if [ ! -f "/usr/bin/nvim" ]; then
-	wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -O /tmp/nvim.appimage && \
-                chmod u+x /tmp/nvim.appimage && \
-		sudo -n mv /tmp/nvim.appimage /usr/bin/nvim
-fi
+## Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
+#if [ ! -f "/usr/bin/nvim" ]; then
+#	wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -O /tmp/nvim.appimage && \
+#                chmod u+x /tmp/nvim.appimage && \
+#		sudo -n mv /tmp/nvim.appimage /usr/bin/nvim
+#fi
 
 # Install ripgrep
 if ! [ -x "$(command -v rg)" ]; then
