@@ -136,6 +136,28 @@ alias avv="ansible-vault view"
 alias ch="chezmoi"
 alias cht="~/bin/cht.sh"
 alias chx="chmod +x"
+
+# Copied from docker-compose plugin
+alias pcb='podman-compose build'
+alias pcdn='podman-compose down'
+alias pce='podman-compose exec'
+alias pck='podman-compose kill'
+alias pcl='podman-compose logs'
+alias pclF='podman-compose logs -f --tail 0'
+alias pclf='podman-compose logs -f'
+alias pco='podman-compose'
+alias pcps='podman-compose ps'
+alias pcpull='podman-compose pull'
+alias pcr='podman-compose run'
+alias pcrestart='podman-compose restart'
+alias pcrm='podman-compose rm'
+alias pcstart='podman-compose start'
+alias pcstop='podman-compose stop'
+alias pcup='podman-compose up'
+alias pcupb='podman-compose up --build'
+alias pcupd='podman-compose up -d'
+alias pcupdb='podman-compose up -d --build'
+
 alias digs="dig +noall +answer"
 alias dps='docker ps --format "{{`{{.Names}}`}}\t{{`{{.ID}}`}}\t{{`{{.State}}`}}\t{{`{{.Status}}`}}" | column -t'
 alias fixmerge="git diff --name-only | uniq | xargs nvim"
