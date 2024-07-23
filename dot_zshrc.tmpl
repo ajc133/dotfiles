@@ -220,6 +220,10 @@ function urldecode () {
   python3 -c 'import sys; from urllib.parse import unquote; print(unquote(sys.argv[1]));' $arg 
 }
 
+function nb () {
+  open "https://netbox.prod.2nd.io/search/?q=${1}"
+}
+
 function urlencode () {
   arg=""
   if [[ -n "$1" ]]; then
