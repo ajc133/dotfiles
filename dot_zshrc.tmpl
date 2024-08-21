@@ -8,16 +8,6 @@ export LANG=en_US.UTF-8
 export LC_TYPE=en_US.UTF-8
 export PAGER="less -r"
 
-# Start ssh-agent
-if [ -z "$SSH_AUTH_SOCK" ]; then
-   # Check for a currently running instance of the agent
-   if pgrep ssh-agent; then
-        # Launch a new instance of the agent
-        ssh-agent -s &> $HOME/.ssh/ssh-agent
-   fi
-   eval `cat $HOME/.ssh/ssh-agent`
-fi
-
 # https://sw.kovidgoyal.net/kitty/shell-integration/#manual-shell-integration
 if test -n "$KITTY_INSTALLATION_DIR"; then
     export KITTY_SHELL_INTEGRATION="enabled"
@@ -25,9 +15,6 @@ if test -n "$KITTY_INSTALLATION_DIR"; then
     kitty-integration
     unfunction kitty-integration
 fi
-
-# Need to run this to make keys available for use on the Remote Docker machine
-ssh-add &>/dev/null
 
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/workspace/bin:$HOME/bin:/usr/local/go/bin:/usr/lib/cargo/bin:$HOME/.ssi/bin:$HOME/go/bin:$HOME/.fly/bin:/opt/nvim-linux64/bin:$PATH
 
