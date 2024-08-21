@@ -1,10 +1,10 @@
 #!/bin/bash
+set -x
 {{ if not (eq .chezmoi.os "darwin") -}}
 {{ if eq .chezmoi.osRelease.id "manjaro" -}}
-sudo -n pacman -Syy
-sudo -n pacman --noconfirm -S \
+sudo -n pamac install --no-confirm \
     aardvark-dns \
-    aws-cli-v2 \
+    aws-cli \
     bind-tools \
     cmake \
     delve \
@@ -20,7 +20,6 @@ sudo -n pacman --noconfirm -S \
     neovim \
     podman \
     podman-compose \
-    podman-dnsname \
     python-pipx \
     ripgrep \
     rustup \
