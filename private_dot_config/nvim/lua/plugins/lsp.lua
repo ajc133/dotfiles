@@ -118,31 +118,11 @@ return {
 				},
 				marksman = {},
 				prismals = {},
-				pylsp = {
-					settings = {
-						pylsp = {
-							configuration_sources = { "flake8" },
-							plugins = {
-								black = {
-									enabled = true,
-								},
-								pylsp_mypy = {
-									-- pip install pylsp-mypy
-									enabled = true,
-								},
-								flake8 = {
-									enabled = true,
-								},
-								pycodestyle = {
-									enabled = false,
-								},
-								mccabe = {
-									enabled = false,
-								},
-								pyflakes = {
-									enabled = false,
-								},
-							},
+				ruff_lsp = {
+					init_options = {
+						settings = {
+							-- Any extra CLI arguments for `ruff` go here.
+							args = {},
 						},
 					},
 				},
@@ -182,13 +162,9 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"ansible-lint",
-				"black",
-				"flake8",
 				"gofumpt",
 				"goimports",
 				"gomodifytags",
-				"isort",
-				-- "mypy", -- pip install python-lsp-black
 				"shellcheck",
 				"stylua", -- Used to format Lua code
 			})
@@ -212,28 +188,21 @@ return {
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		opts = {
-			notify_on_error = false,
-			format_on_save = function(bufnr)
-				-- Disable "format_on_save lsp_fallback" for languages that don't
-				-- have a well standardized coding style. You can add additional
-				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
-				return {
-					timeout_ms = 500,
-					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-				}
-			end,
+			notify_on_error = true,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				-- Conform can also run multiple formatters sequentially
-				python = { "isort", "black" },
-				-- TODO: go
-				--
-				-- You can use a sub-list to tell conform to run *until* a formatter
-				-- is found.
-				-- javascript = { { "prettierd", "prettier" } },
+				python = { "ruff" },
 			},
 		},
+		config = function()
+			require("conform").setup({
+				format_on_save = {
+					-- These options will be passed to conform.format()
+					timeout_ms = 500,
+					lsp_format = "fallback",
+				},
+			})
+		end,
 	},
 
 	{ -- Autocompletion
