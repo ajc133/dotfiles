@@ -118,14 +118,7 @@ return {
 				},
 				marksman = {},
 				prismals = {},
-				ruff_lsp = {
-					init_options = {
-						settings = {
-							-- Any extra CLI arguments for `ruff` go here.
-							args = {},
-						},
-					},
-				},
+				pyright = {},
 				rust_analyzer = {},
 				sqlls = {
 					root_dir = function()
@@ -162,9 +155,6 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"ansible-lint",
-				"gofumpt",
-				"goimports",
-				"gomodifytags",
 				"shellcheck",
 				"stylua", -- Used to format Lua code
 			})
@@ -307,7 +297,7 @@ return {
 					--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 				}),
 				sources = {
-					{ name = "nvim_lsp", priority = 10 },
+					{ name = "nvim_lsp",                priority = 10 },
 					{ name = "nvim_lsp_signature_help", priority = 10 },
 					-- { name = "buffer" },
 					-- { name = "path" },
