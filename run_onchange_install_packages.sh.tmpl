@@ -123,6 +123,12 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use ]; then
 	git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
 fi
 
+
+# auto-venv
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/auto-venv ]; then
+	git clone https://github.com/Skylor-Tang/auto-venv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/auto-venv
+fi
+
 mkdir -p ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/poetry
 # poetry completions
 # poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
