@@ -11,7 +11,11 @@ function zsh_clone {
 	plugin_name="$(printf '%s/' "$plugin_url" | awk -F '/' '{print $NF}')"
 	plugin_path="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/${type}/${plugin_name}"
 	if [ ! -d "$plugin_path" ]; then
+		# Clone it
 		git clone "$plugin_url" "$plugin_path"
+	else
+		# Update it
+		git -C "$plugin_path" pull
 	fi
 }
 

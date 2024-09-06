@@ -55,23 +55,7 @@ sudo -n apt-get install -y \
     zsh
 {{ end -}}
 
-{{ if eq .chezmoi.osRelease.id "manjaro" -}}
-pipx install poetry
-{{ end -}}
-
-{{ if eq .chezmoi.os "darwin" -}}
-brew install -q\
-  hexyl \
-  git-delta \
-  sd
-{{ end -}}
-
-{{ if eq .chezmoi.os "darwin" -}}
-if [ ! -f "/usr/local/bin/nvim" ]; then
-  brew install -q neovim
-fi
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
-
 # Install ripgrep
 if ! [ -x "$(command -v rg)" ]; then
   curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
