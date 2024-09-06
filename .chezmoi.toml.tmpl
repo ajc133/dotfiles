@@ -2,7 +2,14 @@
 {{- $git_email := promptStringOnce . "git_email" "Git email address" -}}
 {{- $zsh_theme := promptStringOnce . "zsh_theme" "ZSH theme" -}}
 
+{{/* https://www.chezmoi.io/user-guide/machines/linux/ */}}
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
 [data]
   git_name = {{ $git_name | quote }}
   git_email = {{ $git_email | quote }}
   zsh_theme = {{ $zsh_theme | quote }}
+  osid = {{ $osid | quote }}

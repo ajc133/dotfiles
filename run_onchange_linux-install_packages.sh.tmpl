@@ -1,0 +1,13 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+{{ if eq .osid "linux-manjaro" }}
+sudo -n pamac install --no-confirm {{ range .packages.manjaro }} {{ . | quote }}{{ end }}
+sudo -n pamac install --no-confirm {{ range .packages.linux }} {{ . | quote }}{{ end }}
+{{ else if eq .osid "linux-debian" "linux-ubuntu" }}
+sudo -n apt-get update -y
+sudo -n apt-get install -y {{ range .packages.debian }} {{ . | quote }}{{ end }}
+sudo -n apt-get install -y {{ range .packages.linux -}} {{ . | quote }}{{ end }}
+{{ end -}}
+
+{{ end -}}

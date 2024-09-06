@@ -1,4 +1,55 @@
 packages:
+  linux:
+    - curl
+    - direnv
+    - fzf
+    - git
+    - httpie
+    - hugo
+    - iperf
+    - jq
+    - keychain
+    - nmap
+    - ripgrep
+    - tmux
+    - unzip
+    - xclip
+    - yq
+    - zsh
+  debian:
+    - cmake
+    - exa
+    - fd-find
+    - gnome-tweaks
+    - golang
+    - hexyl
+    - nodejs
+    - npm
+    - python3.11-venv
+    - silversearcher-ag
+  manjaro:
+    - aardvark-dns
+    - aws-cli
+    - bind-tools
+    - cmake
+    - delve
+    - exa
+    - fd
+    - fuse-overlayfs
+    - git-delta
+    - go
+    - hexyl
+    - jless
+    - make
+    - neovim
+    - nodejs
+    - npm
+    - podman
+    - podman-compose
+    - python-pipx
+    - ripgrep
+    - rustup
+    - terraform
   darwin:
     casks:
     - "chromedriver"
@@ -27,6 +78,7 @@ packages:
     - "fd"
     - "ffmpeg"
     - "fping"
+    - "fzf"
     - "gettext"
     - "ghostscript"
     - "git-delta"
