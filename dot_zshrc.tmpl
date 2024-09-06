@@ -37,7 +37,7 @@ ZSH_THEME={{ .zsh_theme }}
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 plugins=(
     asdf
-    auto-venv
+    direnv
     docker
     docker-compose
     fzf-tab
@@ -260,9 +260,6 @@ qr() {
     # Generate QR code and display it
     qrencode "$1" -o - | display
 }
-
-
-eval "$(direnv hook zsh)"
 
 {{ if eq .chezmoi.os "darwin" }}
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

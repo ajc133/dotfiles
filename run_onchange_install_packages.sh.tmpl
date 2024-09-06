@@ -71,12 +71,6 @@ if [ ! -f "/usr/local/bin/nvim" ]; then
   brew install -q neovim
 fi
 {{ else if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
-## Download nvim from https://github.com/neovim/neovim/releases, copy to /usr/local/bin/nvim, chmod +x
-#if [ ! -f "/usr/bin/nvim" ]; then
-#	wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -O /tmp/nvim.appimage && \
-#                chmod u+x /tmp/nvim.appimage && \
-#		sudo -n mv /tmp/nvim.appimage /usr/bin/nvim
-#fi
 
 # Install ripgrep
 if ! [ -x "$(command -v rg)" ]; then
@@ -86,57 +80,6 @@ if ! [ -x "$(command -v rg)" ]; then
 fi
 
 {{ end -}}
-
-# Neovim packer
-packpath="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
-if [ ! -d "$packpath" ]; then
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim "$packpath"
-fi
-
-# Astronvim
-astronvim_path="$HOME/.config/astronvim"
-if [ ! -d "$astronvim_path" ]; then
-    git clone --depth 1 https://github.com/AstroNvim/AstroNvim $astronvim_path
-fi
-
-# clone oh-my-zsh
-if [ ! -d "${HOME}/.oh-my-zsh" ]; then
-    git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-fi
-
-
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k ]; then
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-fi
-
-# zsh-autosuggestions
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
-	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-fi
-# zsh-syntax-highlighting
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-fi
-
-# zsh-you-should-use
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use ]; then
-	git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
-fi
-
-
-# auto-venv
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/auto-venv ]; then
-	git clone https://github.com/Skylor-Tang/auto-venv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/auto-venv
-fi
-
-mkdir -p ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/poetry
-# poetry completions
-# poetry completions zsh > $ZSH_CUSTOM/plugins/poetry/_poetry
-
-# fzf-tab
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab ]; then
-	git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
-fi
 
 # fzf
 if [ ! -d "$HOME/.fzf" ]; then
