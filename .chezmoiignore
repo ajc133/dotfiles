@@ -1,4 +1,5 @@
 # Skips adding these files to $HOME
 README.md
 RectangleConfig.json
-.oh-my-zsh/cache/completions/
+.oh-my-zsh/cache/
+*/*.zwc

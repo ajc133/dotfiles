@@ -14,6 +14,3 @@
   zsh_theme = {{ $zsh_theme | quote }}
   osid = {{ $osid | quote }}
 
-[hooks.apply.post]
-command = "ln"
-args = ["-sf", "~/.tmux/.tmux.conf", "~/.tmux.conf"]
