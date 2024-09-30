@@ -27,9 +27,11 @@ packages:
     - npm
     - python3.11-venv
     - silversearcher-ag
+  aur:
+    - aws-cli-v2-bin
   manjaro:
     - aardvark-dns
-    - aws-cli
+    - base-devel
     - bind-tools
     - cmake
     - delve
