@@ -29,6 +29,7 @@ packages:
     - silversearcher-ag
   aur:
     - aws-cli-v2-bin
+    - simplescreenrecorder
   manjaro:
     - aardvark-dns
     - base-devel
@@ -52,6 +53,7 @@ packages:
     - ripgrep
     - rustup
     - terraform
+    - wireshark-qt
   darwin:
     casks:
     - "chromedriver"
