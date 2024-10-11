@@ -1,5 +1,6 @@
 packages:
   linux:
+    - bat
     - curl
     - direnv
     - fzf
