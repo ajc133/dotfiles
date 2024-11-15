@@ -12,8 +12,10 @@ packages:
     - keychain
     - nmap
     - ripgrep
+    - tcpdump
     - tmux
     - unzip
+    - visidata
     - xclip
     - yq
     - zsh
@@ -33,6 +35,7 @@ packages:
     - simplescreenrecorder
   manjaro:
     - aardvark-dns
+    - android-tools
     - base-devel
     - bind-tools
     - cmake
@@ -50,6 +53,7 @@ packages:
     - npm
     - podman
     - podman-compose
+    - prettier
     - python-pipx
     - ripgrep
     - rustup

@@ -69,6 +69,10 @@ vim.keymap.set("v", "<F2>", '"7y | :%s/\\<<C-r>7\\>/', { desc = "" })
 -- Terminal mode mappings
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape terminal mode sensibly" })
 
+-- Visual and Select mode mappings
+vim.keymap.set("x", "<Leader>k", "<Esc>`>a](<C-r>*)<C-o>`<[<Esc>",
+	{ desc = "Create a markdown link of highlighted text" })
+
 ------------------
 -- Autocommands --
 ------------------
