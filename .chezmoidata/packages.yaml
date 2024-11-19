@@ -54,7 +54,11 @@ packages:
     - podman
     - podman-compose
     - prettier
+    - python-gdal
+    - python-lxml
+    - python-owslib
     - python-pipx
+    - python-psycopg2
     - ripgrep
     - rustup
     - terraform
