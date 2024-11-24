@@ -51,6 +51,7 @@ packages:
     - neovim
     - nodejs
     - npm
+    - pandoc-cli
     - podman
     - podman-compose
     - prettier
