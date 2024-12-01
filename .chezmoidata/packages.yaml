@@ -12,6 +12,7 @@ packages:
     - jq
     - keychain
     - nmap
+    - p7zip-full
     - ripgrep
     - tcpdump
     - tmux
