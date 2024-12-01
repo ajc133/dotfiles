@@ -3,6 +3,7 @@ packages:
     - bat
     - curl
     - direnv
+    - entr
     - fzf
     - git
     - httpie
@@ -86,6 +87,7 @@ packages:
     - "docker-credential-helper-ecr"
     - "duckdb"
     - "e2fsprogs"
+    - "entr"
     - "eslint"
     - "exa"
     - "exiftool"
