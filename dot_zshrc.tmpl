@@ -125,6 +125,10 @@ alias ch="chezmoi"
 alias cht="~/bin/cht.sh"
 alias chx="chmod +x"
 
+# Print binary or hex
+alias bin="python -c 'import sys; print(bin(int(sys.argv[1])))'"
+alias hex="python -c 'import sys; print(hex(int(sys.argv[1])))'"
+
 # Copied from docker-compose plugin
 alias pcb='podman-compose build'
 alias pcdn='podman-compose down'
