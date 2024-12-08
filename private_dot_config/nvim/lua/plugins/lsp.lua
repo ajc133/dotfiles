@@ -126,7 +126,6 @@ return {
 					end,
 				},
 				terraformls = {},
-				tsserver = {},
 				yamlls = {},
 				lua_ls = {
 					-- cmd = {...},
