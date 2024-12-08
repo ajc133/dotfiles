@@ -186,6 +186,9 @@ alias ezsh="vim ~/.zshrc"
 alias pymg="python manage.py"
 alias http="curlie"
 
+# sqlite-utils completions
+eval "$(_SQLITE_UTILS_COMPLETE=zsh_source sqlite-utils)"
+
 lastdl() {
     LS_COMMAND='ls'
 
