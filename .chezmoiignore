@@ -3,3 +3,4 @@ README.md
 RectangleConfig.json
 .oh-my-zsh/cache/
 */*.zwc
+.git-blame-ignore-revs

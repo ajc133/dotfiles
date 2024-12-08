@@ -1,16 +1,16 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out,                            "WarningMsg" },
-			{ "\nPress any key to exit..." },
-		}, true, {})
-		vim.fn.getchar()
-		os.exit(1)
-	end
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out,                            "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -70,7 +70,7 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape terminal mode sensi
 
 -- Visual and Select mode mappings
 vim.keymap.set("x", "<Leader>k", "<Esc>`>a](<C-r>*)<C-o>`<[<Esc>",
-	{ desc = "Create a markdown link of highlighted text" })
+  { desc = "Create a markdown link of highlighted text" })
 
 ------------------
 -- Autocommands --
@@ -78,20 +78,20 @@ vim.keymap.set("x", "<Leader>k", "<Esc>`>a](<C-r>*)<C-o>`<[<Esc>",
 
 -- Dotfile management
 vim.api.nvim_create_autocmd("BufWritePost", {
-	desc = "Apply Chezmoi nvim config on change",
-	group = vim.api.nvim_create_augroup("chezmoi-write", { clear = true }),
-	pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/private_dot_config/nvim/*",
-	command = ":!chezmoi apply ~/.config/nvim",
+  desc = "Apply Chezmoi nvim config on change",
+  group = vim.api.nvim_create_augroup("chezmoi-write", { clear = true }),
+  pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/private_dot_config/nvim/*",
+  command = ":!chezmoi apply ~/.config/nvim",
 })
 
 -- Highlight when yanking (copying) text
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 -- Highlight all search matches only while typing
@@ -104,15 +104,15 @@ vim.cmd("autocmd CmdlineLeave /,\\? :set nohlsearch")
 
 -- Setup lazy.nvim
 require("lazy").setup({
-	spec = {
-		-- import your plugins
-		{ import = "plugins" },
-	},
-	-- Configure any other settings here. See the documentation for more details.
-	-- colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "onedark" } },
-	-- automatically check for plugin updates
-	checker = { enabled = true },
+  spec = {
+    -- import your plugins
+    { import = "plugins" },
+  },
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "onedark" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
 })
 
 vim.cmd.colorscheme("onedark")
