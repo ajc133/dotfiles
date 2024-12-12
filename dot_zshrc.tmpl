@@ -47,6 +47,7 @@ plugins=(
     kubectl
     podman
     poetry
+    systemd
     tmux
     vi-mode
     you-should-use
@@ -81,7 +82,7 @@ fi
 {{ end }}
 
 fpath=(
-    ~/.zsh 
+    ~/.zsh
     $fpath
 )
 
@@ -213,7 +214,7 @@ function urldecode () {
   else
       arg="$(cat)"
   fi
-  python3 -c 'import sys; from urllib.parse import unquote; print(unquote(sys.argv[1]));' $arg 
+  python3 -c 'import sys; from urllib.parse import unquote; print(unquote(sys.argv[1]));' $arg
 }
 
 function nb () {
@@ -227,7 +228,7 @@ function urlencode () {
   else
       arg="$(cat)"
   fi
-  python3 -c "import sys; from urllib.parse import quote; print(quote(sys.argv[1]));" $arg 
+  python3 -c "import sys; from urllib.parse import quote; print(quote(sys.argv[1]));" $arg
 }
 
 
@@ -236,7 +237,7 @@ unalias gsw
 function gsw () {
   if [ -z "$1" ]
   then
-    git switch $(git branch --sort=-committerdate | fzf | tr -d '[:space:]') 
+    git switch $(git branch --sort=-committerdate | fzf | tr -d '[:space:]')
   else
     git switch "$1"
   fi
