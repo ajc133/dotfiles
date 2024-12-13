@@ -145,6 +145,7 @@ packages:
     - "qemu"
     - "qrencode"
     - "ripgrep"
+    - "rover"
     - "saulpw/vd/visidata"
     - "sd"
     - "sevenzip"
