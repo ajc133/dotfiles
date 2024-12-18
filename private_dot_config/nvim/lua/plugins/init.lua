@@ -66,4 +66,10 @@ return {
     end
   },
   { "Glench/Vim-Jinja2-Syntax" },
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  },
 }
