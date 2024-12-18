@@ -3,6 +3,9 @@ return {
   {
     "folke/which-key.nvim",
     event = "VimEnter",
+    opts = {
+      preset = "modern",
+    },
     config = function()
       require("which-key").setup()
     end,
