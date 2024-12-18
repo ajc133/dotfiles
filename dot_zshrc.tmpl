@@ -188,7 +188,9 @@ alias pymg="python manage.py"
 alias http="curlie"
 
 # sqlite-utils completions
-eval "$(_SQLITE_UTILS_COMPLETE=zsh_source sqlite-utils)"
+if command -v sqlite-utils; then
+    eval "$(_SQLITE_UTILS_COMPLETE=zsh_source sqlite-utils)"
+fi
 
 lastdl() {
     LS_COMMAND='ls'
