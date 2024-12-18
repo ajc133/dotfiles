@@ -1,6 +1,4 @@
 return {
-  "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-
   -- Useful plugin to show you pending keybinds.
   {
     "folke/which-key.nvim",
@@ -42,19 +40,6 @@ return {
 
   -- "gc" to comment visual regions/lines
   { "numToStr/Comment.nvim", opts = {} },
-
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- your configuration comes here
-    },
-    config = function()
-      vim.keymap.set("n", "<leader>t", function()
-        require("trouble").toggle()
-      end)
-    end,
-  },
 
   {
     "rmagatti/auto-session",
