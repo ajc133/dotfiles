@@ -7,8 +7,8 @@ sudo -n pamac install --no-confirm {{ range .packages.manjaro }} {{ . | quote }}
 # sudo -n pamac build --keep --no-confirm {{ range .packages.aur }} {{ . | quote }}{{ end }}
 {{ else if eq .osid "linux-debian" "linux-ubuntu" }}
 sudo -n apt-get update -y
-sudo -n apt-get install -y {{ range .packages.debian }} {{ . | quote }}{{ end }}
-sudo -n apt-get install -y {{ range .packages.linux -}} {{ . | quote }}{{ end }}
+sudo -n apt-get install -y {{ range .packages.debian }} {{ . | quote }} {{ end }}
+sudo -n apt-get install -y {{ range .packages.linux -}} {{ . | quote }} {{ end }}
 {{ end -}}
 
 {{ end -}}
