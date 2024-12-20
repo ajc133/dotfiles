@@ -20,7 +20,7 @@ return {
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+        group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
           local map = function(keys, func, desc)
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
@@ -88,6 +88,11 @@ return {
               callback = vim.lsp.buf.clear_references,
             })
           end
+
+          -- disable hover capability from ruff
+          if client and client.name == "ruff" then
+            client.server_capabilities.hoverProvider = false
+          end
         end,
       })
 
@@ -121,7 +126,28 @@ return {
         },
         marksman = {},
         prismals = {},
-        pyright = {},
+        pyright = {
+          settings = {
+            pyright = {
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { "*" },
+              }
+            }
+          }
+        },
+        ruff = {
+          trace = 'messages',
+          init_options = {
+            settings = {
+              logLevel = 'debug',
+            }
+          }
+        },
         rust_analyzer = {},
         sqlls = {
           root_dir = function()
@@ -158,7 +184,6 @@ return {
       vim.list_extend(ensure_installed, {
         "ansible-lint",
         "shellcheck",
-        "ruff",
         "stylua", -- Used to format Lua code
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
@@ -184,7 +209,6 @@ return {
       notify_on_error = true,
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "ruff" },
       },
     },
     config = function()
@@ -197,7 +221,6 @@ return {
       })
     end,
   },
-
   {
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',
