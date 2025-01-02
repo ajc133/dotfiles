@@ -4,7 +4,6 @@ packages:
     - curl
     - direnv
     - entr
-    - perl-image-exiftool
     - fzf
     - git
     - httpie
@@ -28,6 +27,7 @@ packages:
     - gnome-tweaks
     - golang
     - hexyl
+    - libimage-exiftool-perl
     - nodejs
     - npm
     - python3.11-venv
@@ -54,6 +54,7 @@ packages:
     - nodejs
     - npm
     - pandoc-cli
+    - perl-image-exiftool
     - podman
     - podman-compose
     - prettier
