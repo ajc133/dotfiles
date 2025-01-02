@@ -4,6 +4,7 @@ packages:
     - curl
     - direnv
     - entr
+    - perl-image-exiftool
     - fzf
     - git
     - httpie
@@ -12,7 +13,6 @@ packages:
     - jq
     - keychain
     - nmap
-    - p7zip-full
     - ripgrep
     - tcpdump
     - tmux
