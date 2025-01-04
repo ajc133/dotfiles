@@ -188,8 +188,13 @@ alias pymg="python manage.py"
 alias http="curlie"
 
 # sqlite-utils completions
-if command -v sqlite-utils; then
+if command -v sqlite-utils >/dev/null; then
     eval "$(_SQLITE_UTILS_COMPLETE=zsh_source sqlite-utils)"
+fi
+
+# uv completions
+if command -v uv >/dev/null; then
+	eval "$(uvx --generate-shell-completion zsh)"
 fi
 
 lastdl() {
