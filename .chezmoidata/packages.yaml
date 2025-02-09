@@ -21,6 +21,7 @@ packages:
     - yq
     - zsh
   debian:
+    - beets
     - cmake
     - exa
     - fd-find
