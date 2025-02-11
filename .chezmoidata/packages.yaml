@@ -33,9 +33,6 @@ packages:
     - npm
     - python3.11-venv
     - silversearcher-ag
-  aur:
-    - aws-cli-v2-bin
-    - simplescreenrecorder
   manjaro:
     - aardvark-dns
     - android-tools
