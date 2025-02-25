@@ -1,27 +1,51 @@
 [user]
-    email = {{ .git_email }}
-    name = {{ .git_name }}
+	email = {{ .git_email }}
+	name = {{ .git_name }}
 [pull]
-    rebase = true
+	rebase = true
+
 [push]
-    autoSetupRemote = true
-
+	default = simple
+	autoSetupRemote = true
+	followTags = true
 [core]
-    difftool = true
-    excludesFile = ~/.config/git/ignore
-
+	difftool = true
+	excludesFile = ~/.config/git/ignore
+	fsmonitor = true
+	untrackedCache = true
 [merge]
-    conflictstyle = diff3
-
+	conflictstyle = diff3
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 [init]
-    defaultBranch = main
-
+	defaultBranch = main
 [rerere]
 	enabled = true
-
+	autoupdate = true
+[help]
+	autocorrect = prompt
+[commit]
+	verbose = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
 {{ if eq .chezmoi.os "darwin" }}
 [url "git@git.2nd.io:"]
-    insteadOf = https://git.2nd.io/
+	insteadOf = https://git.2nd.io/
 {{ end }}
 
 
