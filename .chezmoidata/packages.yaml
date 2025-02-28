@@ -141,6 +141,7 @@ packages:
       - "net-snmp"
       - "nmap"
       - "packer"
+      - "paintbrush"
       - "pandoc"
       - "parallel"
       - "pipx"
