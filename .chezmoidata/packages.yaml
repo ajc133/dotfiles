@@ -49,13 +49,11 @@ packages:
     - jless
     - make
     - neovim
-    - nodejs
     - npm
     - pandoc-cli
     - perl-image-exiftool
     - podman
     - podman-compose
-    - prettier
     - python-gdal
     - python-lxml
     - python-owslib
@@ -64,6 +62,7 @@ packages:
     - ripgrep
     - rustup
     - terraform
+    - uv
     - wireshark-qt
   darwin:
     casks:
