@@ -133,6 +133,7 @@ packages:
       - "neovim"
       - "net-snmp"
       - "nmap"
+      - "nvm"
       - "node"
       - "openjpeg"
       - "openssl@3"
