@@ -208,17 +208,15 @@ alias mbr="make build && make run"
 alias mr="make run"
 alias sl="ls"
 alias tf="terraform"
+alias uvr="uv run"
+alias uvxr="uvx run"
+alias uvmg="uv run manage.py"
 alias vim="nvim"
 alias anvim='NVIM_APPNAME="astronvim" nvim'
 alias szsh="source ~/.zshrc"
 alias ezsh="vim ~/.zshrc"
 alias pymg="python manage.py"
 alias http="curlie"
-
-# sqlite-utils completions
-if command -v sqlite-utils >/dev/null; then
-    eval "$(_SQLITE_UTILS_COMPLETE=zsh_source sqlite-utils)"
-fi
 
 # uv completions
 if command -v uv >/dev/null; then
@@ -312,14 +310,7 @@ qr() {
         return 1
     fi
 
-    # Check if display (ImageMagick) is installed
-    if ! command -v display &> /dev/null; then
-        echo "Error: ImageMagick (display) is not installed. Please install ImageMagick before using this function."
-        return 1
-    fi
-
-    # Generate QR code and display it
-    qrencode "$1" -o - | display
+    qrencode -t ansiutf8 "$1"
 }
 
 {{ if eq .chezmoi.os "darwin" }}
