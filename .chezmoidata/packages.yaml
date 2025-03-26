@@ -67,7 +67,6 @@ packages:
   darwin:
     casks:
       - "chromedriver"
-      - "mactex"
       - "pycharm-ce"
       - "rar"
       - "vienna"

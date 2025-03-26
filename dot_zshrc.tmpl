@@ -62,10 +62,12 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export ANSIBLE_FACTS_DIR="$HOME/.local/share/ansible/facts"
 
 {{ if eq .chezmoi.os "darwin" }}
+if command -v nvm >/dev/null; then
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-{{ end -}}
+fi
+{{ end }}
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -133,6 +135,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # User configuration
 
