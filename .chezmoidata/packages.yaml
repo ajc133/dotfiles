@@ -23,7 +23,6 @@ packages:
   debian:
     - beets
     - cmake
-    - exa
     - fd-find
     - gnome-tweaks
     - golang
@@ -40,7 +39,6 @@ packages:
     - bind-tools
     - cmake
     - delve
-    - exa
     - fd
     - fuse-overlayfs
     - git-delta
@@ -90,7 +88,6 @@ packages:
       - "e2fsprogs"
       - "entr"
       - "eslint"
-      - "exa"
       - "exiftool"
       - "fd"
       - "ffmpeg"
