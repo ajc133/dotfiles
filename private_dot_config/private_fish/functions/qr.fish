@@ -1,4 +1,4 @@
-function qr --wraps='qrencode -t ansiutf8 "$1"' --description 'alias qr qrencode -t ansiutf8 "$1"'
-  qrencode -t ansiutf8 "$1" $argv
+function qr --description 'Make a QR code from input and print in terminal'
+  qrencode -t ansiutf8 $argv[1]
         
 end
