@@ -3,7 +3,6 @@
 .DS_Store
 .envrc
 .envrc-aliases
-.lonesnake
 .vscode/settings.json
 .vscode/launch.json
 node_modules/
