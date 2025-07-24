@@ -4,6 +4,7 @@ packages:
     - curl
     - direnv
     - entr
+    - fish
     - fzf
     - git
     - httpie
@@ -91,6 +92,7 @@ packages:
       - "exiftool"
       - "fd"
       - "ffmpeg"
+      - "fish"
       - "fping"
       - "fzf"
       - "gcc"
