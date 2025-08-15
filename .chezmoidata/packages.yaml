@@ -1,11 +1,18 @@
 packages:
   linux:
     - bat
+    - caddy
+    - caddy
+    - curl
     - curl
     - direnv
     - entr
+    - exiftool
+    - exiftool
+    - ffmpeg
     - fish
     - fzf
+    - git
     - git
     - httpie
     - hugo
@@ -13,6 +20,8 @@ packages:
     - jq
     - keychain
     - nmap
+    - npm
+    - qrencode
     - ripgrep
     - tcpdump
     - tmux
@@ -31,7 +40,7 @@ packages:
     - libimage-exiftool-perl
     - nodejs
     - npm
-    - python3.11-venv
+    - python3.13-venv
     - silversearcher-ag
   manjaro:
     - aardvark-dns
