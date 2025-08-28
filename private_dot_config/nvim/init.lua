@@ -64,6 +64,8 @@ vim.keymap.set("v", ">", ">gv", { desc = "Keep visual selection when indenting b
 vim.keymap.set("v", "<Leader>j", "!jq '.' <CR>", { desc = "Format JSON under visual selection" })
 vim.keymap.set("v", "<Leader>y", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set("v", "<F2>", '"7y | :%s/\\<<C-r>7\\>/', { desc = "" })
+vim.keymap.set("v", "P", '"_dP', { desc = "Paste over selection" })
+vim.keymap.set("v", "p", '"_dp', { desc = "Paste over selection" })
 
 -- Terminal mode mappings
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Escape terminal mode sensibly" })
