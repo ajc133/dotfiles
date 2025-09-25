@@ -179,7 +179,7 @@ packages:
       - "watch"
       - "weechat"
       - "wget"
-      - "xsv"
+      - "xan"
       - "xz"
       - "yq"
       - "yt-dlp"
