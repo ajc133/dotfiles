@@ -41,7 +41,7 @@ packages:
     - nodejs
     - npm
     - python3.13-venv
-    - silversearcher-ag
+    - libxcb-xfixes0-dev
   manjaro:
     - aardvark-dns
     - android-tools

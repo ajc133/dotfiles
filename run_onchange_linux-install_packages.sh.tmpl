@@ -8,6 +8,9 @@ sudo -n pamac install --no-confirm {{ range .packages.manjaro }} {{ . | quote }}
 sudo -n apt-get update -y
 sudo -n apt-get install -y {{ range .packages.debian }} {{ . | quote }} {{ end }}
 sudo -n apt-get install -y {{ range .packages.linux -}} {{ . | quote }} {{ end }}
+
+ln -sf $(which fdfind) ~/.local/bin/fd
+
 {{ end -}}
 
 {{ end -}}
