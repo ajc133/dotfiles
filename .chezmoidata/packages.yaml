@@ -190,8 +190,6 @@ packages:
       - "cdr/coder"
       - "grafana/grafana"
       - "hashicorp/tap"
-      - "homebrew/bundle"
-      - "homebrew/services"
       - "noahgorstein/tap"
       - "saulpw/vd"
       - "vectordotdev/brew"
