@@ -49,11 +49,7 @@ return {
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map(
-            "<leader>ws",
-            require("telescope.builtin").lsp_dynamic_workspace_symbols,
-            "[W]orkspace [S]ymbols"
-          )
+          map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
@@ -101,7 +97,7 @@ return {
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require('blink.cmp').get_lsp_capabilities())
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -124,6 +120,7 @@ return {
             "htmldjango",
           },
         },
+        jsonls = {},
         marksman = {},
         prismals = {},
         pyright = {
@@ -136,17 +133,17 @@ return {
               analysis = {
                 -- Ignore all files for analysis to exclusively use Ruff for linting
                 ignore = { "*" },
-              }
-            }
-          }
+              },
+            },
+          },
         },
         ruff = {
-          trace = 'messages',
+          trace = "messages",
           init_options = {
             settings = {
-              logLevel = 'debug',
-            }
-          }
+              logLevel = "debug",
+            },
+          },
         },
         rust_analyzer = {},
         sqlls = {
@@ -222,32 +219,32 @@ return {
     end,
   },
   {
-    'saghen/blink.cmp',
-    dependencies = 'rafamadriz/friendly-snippets',
+    "saghen/blink.cmp",
+    dependencies = "rafamadriz/friendly-snippets",
 
     -- use a release tag to download pre-built binaries
-    version = 'v0.*',
+    version = "v0.*",
     opts = {
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
       -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
       -- see the "default configuration" section below for full documentation on how to define
       -- your own keymap.
-      keymap = { preset = 'super-tab' },
+      keymap = { preset = "super-tab" },
 
       appearance = {
         use_nvim_cmp_as_default = true,
-        nerd_font_variant = 'mono'
+        nerd_font_variant = "mono",
       },
 
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { "lsp", "path", "snippets", "buffer" },
       },
 
       -- experimental signature help support
-      signature = { enabled = true }
+      signature = { enabled = true },
     },
   },
 }
