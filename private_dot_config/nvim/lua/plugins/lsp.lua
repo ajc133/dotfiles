@@ -123,16 +123,12 @@ return {
         jsonls = {},
         marksman = {},
         prismals = {},
-        pyright = {
+        pyrefly = {
           settings = {
-            pyright = {
-              -- Using Ruff's import organizer
-              disableOrganizeImports = true,
-            },
             python = {
-              analysis = {
-                -- Ignore all files for analysis to exclusively use Ruff for linting
-                ignore = { "*" },
+              pyrefly = {
+                -- This mirrors VS Code's `"python.pyrefly.displayTypeErrors": "force-on"`
+                displayTypeErrors = "force-on",
               },
             },
           },
