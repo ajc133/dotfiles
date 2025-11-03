@@ -1,0 +1,21 @@
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Run `ghostty +list-keybinds --default` to see default keybinds
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+shell-integration = fish
+
+keybind = alt+arrow_up=goto_split:previous
+keybind = alt+arrow_down=goto_split:next
+
+keybind = ctrl+page_up=previous_tab
+keybind = ctrl+page_down=next_tab
