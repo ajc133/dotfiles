@@ -71,6 +71,7 @@ packages:
     - rustup
     - terraform
     - uv
+    - vector
     - wireshark-qt
   darwin:
     casks:
@@ -175,6 +176,7 @@ packages:
       - "tmuxinator"
       - "ttyd"
       - "uv"
+      - vector
       - "wader/tap/fq"
       - "watch"
       - "weechat"
