@@ -122,3 +122,6 @@ vim.cmd.colorscheme(colorscheme)
 
 -- auto-session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- fugitive-gitlab
+vim.g.fugitive_gitlab_domains = { 'https://gitlab.com' }

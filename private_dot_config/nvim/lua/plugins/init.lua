@@ -37,6 +37,9 @@ return {
     opts = {},
   },
 
+  -- Open git blames in gitlab
+  { "shumphrey/fugitive-gitlab.vim" },
+
   -- Debugger
   { "mfussenegger/nvim-dap" },
   { "leoluz/nvim-dap-go" },
