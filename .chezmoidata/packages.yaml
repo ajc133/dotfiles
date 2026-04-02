@@ -1,5 +1,6 @@
 packages:
   linux:
+    - awscli
     - bat
     - caddy
     - caddy
