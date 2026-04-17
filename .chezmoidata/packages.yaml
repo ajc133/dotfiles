@@ -1,4 +1,6 @@
 packages:
+  cargo:
+    - tree-sitter-cli
   linux:
     - awscli
     - bat
@@ -145,6 +147,7 @@ packages:
       - "qemu"
       - "qrencode"
       - "ripgrep"
+      - "rust"
       - "saulpw/vd/visidata"
       - "sevenzip"
       - "shellcheck"
