@@ -79,7 +79,9 @@ packages:
   darwin:
     casks:
       - "chromedriver"
+      - "flycut"
       - "ghostty"
+      - "rectangle"
     brews:
       - "asciinema"
       - "awscli"
