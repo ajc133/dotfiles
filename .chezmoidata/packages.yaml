@@ -35,6 +35,7 @@ packages:
     - zsh
   debian:
     - beets
+    - cargo
     - cmake
     - fd-find
     - gnome-tweaks
