@@ -45,7 +45,7 @@ return {
   { "leoluz/nvim-dap-go" },
 
   -- "gc" to comment visual regions/lines
-  { "numToStr/Comment.nvim", opts = {} },
+  { "nvim-mini/mini.comment", version = "*" },
 
   {
     "rmagatti/auto-session",
@@ -61,7 +61,7 @@ return {
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("lualine").setup()
-    end
+    end,
   },
   {
     "akinsho/bufferline.nvim",
@@ -69,7 +69,7 @@ return {
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("bufferline").setup()
-    end
+    end,
   },
   { "Glench/Vim-Jinja2-Syntax" },
   {

@@ -84,6 +84,7 @@ packages:
       - "ghostty"
       - "netnewswire"
       - "rectangle"
+      - "syncthing-app"
       - "zed"
     brews:
       - "asciinema"
@@ -160,6 +161,7 @@ packages:
       - "speedtest-cli"
       - "sponge"
       - "sshpass"
+      - "terraform"
       - "uv"
       - "watch"
       - "wget"
