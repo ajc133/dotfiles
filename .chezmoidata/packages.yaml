@@ -79,7 +79,6 @@ packages:
     - wireshark-qt
   darwin:
     casks:
-      - "chromedriver"
       - "flycut"
       - "ghostty"
       - "netnewswire"
