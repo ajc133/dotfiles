@@ -4,4 +4,5 @@ abbr -a -- scu 'systemctl --user'
 abbr -a -- jc journalctl
 abbr -a --position anywhere --function last_history_item -- !!
 abbr -a -- crb 'cargo run --bin'
-abbr -a -- dotdot --regex '^\.\.+$' --function multicd
+abbr -a dotdot --regex '^\.\.+$' --function multicd
+abbr -a -- '-' 'cd -'
