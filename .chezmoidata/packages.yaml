@@ -169,6 +169,7 @@ packages:
       - "yq"
       - "yt-dlp"
       - "zlib"
+      - "zoxide"
       - "zstd"
     taps:
       - "hashicorp/tap"
