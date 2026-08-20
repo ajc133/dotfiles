@@ -117,6 +117,7 @@ packages:
       - go
       - gomplate
       - gopls
+      - grpcurl
       - harfbuzz
       - hashicorp/tap/terraform-ls
       - hexyl

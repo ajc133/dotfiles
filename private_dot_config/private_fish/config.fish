@@ -13,4 +13,7 @@ if status is-interactive
     fish_add_path $HOME/.local/bin
     fish_add_path $HOME/.cargo/bin
     fish_add_path /opt/homebrew/bin
+
+    # zoxide is a smarter cd command, inspired by z and autojump.
+    zoxide init fish | source
 end
