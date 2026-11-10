@@ -17,7 +17,6 @@ packages:
     - fzf
     - git
     - git
-    - httpie
     - hugo
     - iperf
     - jq
@@ -132,6 +131,7 @@ packages:
       - jo
       - jpeg-xl
       - jq
+      - just
       - keyring
       - kubernetes-cli
       - libfaketime
